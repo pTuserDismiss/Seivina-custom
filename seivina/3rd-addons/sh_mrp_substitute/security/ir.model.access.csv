@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sh_add_substitute_wizard,sh.add.substitute.wizard,model_sh_add_substitute_wizard,sh_mrp_substitute.group_allow_substitute_product,1,1,1,1

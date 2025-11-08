@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_website_settings_inherit" model="ir.ui.view">
+        <field name="name">website.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='website_shop_checkout']" position="inside">
+                <setting id="quote_checkout" string="Quote Checkout" help="Submit quote at checkout">
+                    <field name="quote_checkout"/>
+                </setting>
+                <setting id="disable_checkout_setting" string="Disable Checkout" help="Create Quotation and Opportunity instead of Checkout">
+                    <field name="disable_checkout"/>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

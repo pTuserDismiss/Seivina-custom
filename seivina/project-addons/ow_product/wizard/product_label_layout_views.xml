@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_label_layout_form_picking_inherit_ow" model="ir.ui.view">
+        <field name="name">product.label.layout.form.inherit.ow</field>
+        <field name="model">product.label.layout</field>
+        <field name="inherit_id" ref="stock.product_label_layout_form_picking"/>
+        <field name="arch" type="xml">
+            <xpath expr='//field[@name="print_format"]/..' position="before">
+                <field name="product_to_print_id" invisible="1"/>
+                <div colspan="2" class="alert alert-warning mt16" role="status" invisible="not product_to_print_id or (print_format!='4x2.5' and print_format!='zpl')" style="">
+                    <field name="inspection_label_warning"/>
+                </div>
+            </xpath>
+            <xpath expr='//field[@name="move_quantity"]' position="before">
+                <field name="product_to_print_id" invisible="print_format!='4x2.5' and print_format!='zpl'" domain="[['id', 'in', avail_products_to_print]]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="route_receive_2_steps" model="stock.route">
+        <field name="name">Receive in 2 steps (input + stock)</field>
+        <field name="active" eval="True"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="display_name">Receive in 2 steps (input + stock)</field>
+        <field name="sequence" eval="9"/>
+        <field name="packaging_selectable" eval="False"/>
+        <field name="product_categ_selectable" eval="False"/>
+        <field name="product_selectable" eval="True"/>
+        <field name="sale_selectable" eval="False"/>
+        <field name="warehouse_selectable" eval="False"/>
+        <field name="warehouse_ids" eval="[(6, 0, [ref('stock.warehouse0')])]"/>
+        <field name="warehouse_domain_ids" eval="[(6, 0, [ref('stock.warehouse0')])]"/>
+    </record>
+    <record id="stock_rule_input_to_stock" model="stock.rule">
+        <field name="name">WH: Input → Stock</field>
+        <field name="active" eval="True"/>
+        <field name="auto" eval="'manual'"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="delay" eval="0"/>
+        <field name="display_name">WH: Input → Stock</field>
+        <field name="group_id" eval="False"/>
+        <field name="group_propagation_option" eval="'propagate'"/>
+        <field name="action" eval="'push'"/>
+        <field name="location_dest_from_rule" eval="False"/>
+        <field name="location_dest_id" ref="stock.stock_location_stock"/>
+        <field name="location_src_id" ref="stock.stock_location_company"/>
+        <field name="picking_type_id" ref="stock.picking_type_in"/>
+        <field name="procure_method" eval="'make_to_order'"/>
+        <field name="propagate_cancel" eval="False"/>
+        <field name="propagate_carrier" eval="False"/>
+        <field name="propagate_warehouse_id" eval="False"/>
+        <field name="push_domain" eval="False"/>
+        <field name="route_id" ref="route_receive_2_steps"/>
+        <field name="route_sequence" eval="9"/>
+        <field name="rule_message">
+            <![CDATA[
+            <p>When products arrive in <b>WH/Input</b>, <br>
+            <b>Storage</b> are created to send them to <b>WH/Stock</b>.</p>
+            ]]>
+        </field>
+        <field name="sequence" eval="20"/>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+    </record>
+</odoo>

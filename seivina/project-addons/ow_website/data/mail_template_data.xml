@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="email_template_sale_team_assigned_ow_website" model="mail.template">
+            <field name="name">Sales: Assigned to Sale Team Notification</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="subject">You have been assigned to {{ object.name or 'n/a' }}</field>
+            <field name="email_from">{{ (object.user_id.email_formatted or object.company_id.email_formatted or user.email_formatted) }}</field>
+            <field name="description">Used by salespeople when they are assigned to a sale order</field>
+            <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Dear Sales Team,
+        <br/><br/>
+        You have been assigned to the Sale Order <span style="font-weight: bold;" t-out="object.name or ''">{{ object.name or 'n/a' }}</span>.
+        <br/><br/>
+        <t t-out="object.user_id.signature or ''">--<br/>System</t>
+    </p>
+</div>
+            </field>
+        </record>
+
+        <record id="sale.email_template_edi_sale" model="mail.template">
+            <field name="body_html" type="xml">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        <t t-set="doc_name" t-value="'quotation' if object.state in ('draft', 'sent') else 'order'"/>
+        Hello,
+        <br/><br/>
+        Your
+        <t t-if="ctx.get('proforma')">
+            Pro forma invoice for <t t-out="doc_name or ''">quotation</t> <span style="font-weight: bold;"  t-out="object.name or ''">S00052</span>
+            <t t-if="object.origin">
+                (with reference: <t t-out="object.origin or ''"></t> )
+            </t>
+            amounting in <span style="font-weight: bold;"  t-out="format_amount(object.amount_total, object.currency_id) or ''">$ 10.00</span> is available.
+        </t>
+        <t t-else="">
+            <t t-out="doc_name or ''">quotation</t> <span style="font-weight: bold;" t-out="object.name or ''">S00052</span>
+            <t t-if="object.origin">
+                (with reference: <t t-out="object.origin or ''">S00052</t> )
+            </t>
+            amounting in <span style="font-weight: bold;" t-out="format_amount(object.amount_total, object.currency_id) or ''">$ 10.00</span> is ready for review.
+        </t>
+        <br/>
+        <t t-set="documents" t-value="object._get_product_documents()"/>
+        <t t-if="documents">
+            <br/> 
+            <t t-if="len(documents)>1">
+                Here are some additional documents that may interest you:
+            </t>
+            <t t-else="">
+                Here is an additional document that may interest you:
+            </t>
+            <ul style="margin-bottom: 0;">
+                <t t-foreach="documents" t-as="document">
+                    <li style="font-size: 13px;">
+                        <a t-out="document.ir_attachment_id.name"
+                            t-att-href="object.get_portal_url('/document/' + str(document.id))"
+                            t-att-target="target"/>
+                    </li>
+                </t>
+            </ul>
+        </t>
+        <br/>
+        Do not hesitate to contact us if you have any questions.
+        <br/>
+        <t t-if="not object._has_customer_user_ids()">
+            We will reach out to finalize the quote.
+        </t>
+        <t t-if="not is_html_empty(object.user_id.signature)">
+            <br/><br/>
+            <t t-out="object.user_id.signature or ''">--<br/>Mitchell Admin</t>
+        </t>
+        <br/><br/>
+    </p>
+</div>
+            </field>
+        </record>
+
+        <template id="mail_notification_layout_sale_order_ow_website">
+            <html t-att-lang="lang">
+            <head>
+                <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+            </head>
+            <body style="font-family:Verdana, Arial,sans-serif; color: #454748;">
+                <div style="max-width: 900px; width: 100%;">
+                    <div style="padding: 0px;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="width: 100%; margin-top: 5px;">
+                            <tbody>
+                                <tr>
+                                    <td valign="center" style="white-space:nowrap;">
+                                        <div>
+                                            <span>
+                                                <a t-att-href="record.get_formview_url()" target="_blank"
+                                                    style="background-color: #875a7b; text-decoration: none; color: #fff; padding: 8px 16px 8px 16px; border-radius: 5px;">View Sale Order</a>
+                                                &amp;nbsp;&amp;nbsp;
+                                                <strong><t t-out="record.name or ''" /></strong>
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="center">
+                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin: 10px 0px;"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- CONTENT -->
+                    <div t-out="message.body" style="font-size: 13px;"/>
+                </div>
+            </body>
+            </html>
+        </template>
+    </data>
+</odoo>

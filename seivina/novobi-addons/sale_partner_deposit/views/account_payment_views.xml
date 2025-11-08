@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_account_payment_form_sale_deposit" model="ir.ui.view">
+        <field name="name">account.payment.form.sale.deposit</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account_partner_deposit.view_account_payment_form_account_deposit"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="sale_deposit_id"
+                       readonly="state != 'draft' or not partner_id" invisible="not is_deposit or partner_type != 'customer'"
+                       options="{'no_create': True}" force_save="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

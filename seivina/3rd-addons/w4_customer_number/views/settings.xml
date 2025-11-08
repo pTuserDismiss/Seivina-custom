@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record id="customer_number_res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.customer.number</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//block[@name='companies_setting_container']" position='inside'>
+                    <setting id="customer_number" string="Generate Customer Number" help="if no option is selected, the module will generate a number based on the default settings">
+                        <label for="prefix"/> <field style="padding-left:5px;" name="prefix"/><br/>
+                        <label for="suffix"/> <field style="padding-left:5px;"  name="suffix"/><br/>
+                        <label for="sequence_size"/> <field style="padding-left:5px;"  name="sequence_size"/><br/>
+                        <label for="starting_number"/> <field style="padding-left:5px;"  name="starting_number"/>
+                        <label for="generate_number_for_new_customers"/> <field style="padding-left:5px;"  name="generate_number_for_new_customers"/>
+                        <button type="object" name="generate_numbers" string="Generate Number for Existing Customers" class="btn-primary"/>
+                    </setting>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+</odoo>

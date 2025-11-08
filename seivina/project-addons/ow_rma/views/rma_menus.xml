@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_vendor_rma_picking" name="Return to Vendor" parent="stock.menu_stock_transfers"
+              action="ow_rma.method_action_picking_tree_vendor_rma" sequence="20"
+              groups="stock.group_stock_manager,stock.group_stock_user"/>
+
+    <menuitem id="menu_rma_picking" name="RMA" parent="stock.menu_stock_transfers"
+              action="ow_rma.method_action_picking_tree_rma" sequence="21"
+              groups="stock.group_stock_manager,stock.group_stock_user"/>
+</odoo>

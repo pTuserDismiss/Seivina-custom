@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+    <record id="user_inherit_view_form" model="ir.ui.view">
+        <field name="name">res.user.inherit.enforce.2fa</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="auth_totp.view_totp_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page//div//div[1]" position="inside">
+                <div class="d-flex align-items-center mt-4 mb-4 text-uppercase fw-bolder"
+                    style="margin-left:20%;">Enforce 2FA <field name="totp_enforced" invisible="1" />
+                    <button
+                        invisible="not totp_enforced" name="action_totp_enforced" type="object"
+                        class="fa fa-toggle-on o_auth_2fa_btn text-primary enabled"
+                        aria-label="Disable 2FA"></button>
+                    <button invisible="totp_enforced"
+                        name="action_totp_enforced" type="object"
+                        class="fa fa-toggle-off o_auth_2fa_btn totp_enforced_disabled"
+                        aria-label="Enable 2FA"></button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

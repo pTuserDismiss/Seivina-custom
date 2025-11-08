@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_enforce_twofa_wizard,access.enforce.twofa.wizard,model_enforce_twofa_wizard,,1,1,1,0

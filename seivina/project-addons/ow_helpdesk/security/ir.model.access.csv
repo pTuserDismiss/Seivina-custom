@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_ticket_type_user,access_helpdesk_ticket_type_user,model_helpdesk_ticket_type,base.group_user,1,0,0,0
+access_helpdesk_ticket_type_manager,access_helpdesk_ticket_type_manager,model_helpdesk_ticket_type,helpdesk.group_helpdesk_manager,1,1,1,1
+access_worksheet_template_user,access_worksheet_template_user,worksheet.model_worksheet_template,base.group_user,1,0,0,0
+access_worksheet_template_helpdesk_manager,access_worksheet_template_helpdesk_manager,worksheet.model_worksheet_template,helpdesk.group_helpdesk_manager,1,1,1,1

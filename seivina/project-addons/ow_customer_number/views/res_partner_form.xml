@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_partner_form_ow_crm_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.ow.crm.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="w4_customer_number.form_customer_number"/>
+        <field name="arch" type="xml">
+            <field name="ref" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

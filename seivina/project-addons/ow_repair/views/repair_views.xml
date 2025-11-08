@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_repair_order_form_inherit_feedback" model="ir.ui.view">
+    <field name="name">repair.order.form.inherit</field>
+    <field name="model">repair.order</field>
+    <field name="inherit_id" ref="repair.view_repair_order_form"/>
+    <field name="arch" type="xml">
+      <page name="repair_notes" position="after">
+        <page name="customer_feedback" string="Customer Feedback">
+            <group>
+                <field name="feedback_name" placeholder="Name of the person talked to"/>
+                <field name="feedback_date"/>
+                <field name="feedback_note"/>
+                <field name="feedback_attachment_ids" widget="many2many_binary"/>
+            </group>
+        </page>
+      </page>
+    </field>
+  </record>
+</odoo>

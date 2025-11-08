@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_normal_form_view_inherit_oakworks" model="ir.ui.view">
+        <field name="name">product.product.form.inherit.oakworks</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="default_code" position="after">
+                <field name="gtin"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

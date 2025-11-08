@@ -1,0 +1,120 @@
+
+.btn-outline-primary.request-quote {
+    border-width: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary.request-quote:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+.modal-dialog {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+}
+#requestQuoteModal .modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+#requestQuoteModal .modal-header {
+    background: linear-gradient(135deg, #714B67, #5f3f57);
+    color: white;
+    border-radius: 15px 15px 0 0;
+    border-bottom: none;
+    z-index: 999;
+}
+
+#requestQuoteModal .modal-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+#requestQuoteModal .btn-close {
+    filter: invert(1);
+    opacity: 0.8;
+}
+
+#requestQuoteModal .btn-close:hover {
+    opacity: 1;
+}
+
+#requestQuoteModal .form-label {
+    font-weight: 600;
+    color: #495057;
+}
+
+#requestQuoteModal .form-control,
+#requestQuoteModal .form-select {
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    transition: border-color 0.3s ease;
+}
+
+#requestQuoteModal .form-control:focus,
+#requestQuoteModal .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+#requestQuoteModal .btn-success {
+    background: #714B67;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 12px 30px;
+    transition: all 0.3s ease;
+}
+
+#requestQuoteModal .btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+#requestQuoteModal .btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 12px 30px;
+    transition: all 0.3s ease;
+}
+
+#requestQuoteModal .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
+}
+
+.alert-success {
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    color: #155724;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+}
+
+.alert-danger {
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+    color: #721c24;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
+}
+
+@media (max-width: 768px) {
+    #requestQuoteModal .modal-dialog {
+        margin: 10px;
+    }
+    
+    #requestQuoteModal .modal-body {
+        padding: 20px 15px;
+    }
+    
+    #requestQuoteModal .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

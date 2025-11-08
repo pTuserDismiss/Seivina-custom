@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record model="ir.ui.view" id="email_compose_form_inherit_ow">
+            <field name="name">mail.compose.message.form.inherit.ow</field>
+            <field name="model">mail.compose.message</field>
+            <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/div/field[@name='body']" position="after">
+                    <label for="vendor_attachments" string="Select Attachments From Vendor" invisible="model != 'purchase.order'"/>
+                    <field name="vendor_attachments" widget="many2many_tags" domain="[['id', 'in', avail_vendor_attachments]]" invisible="model != 'purchase.order'"/>
+                </xpath>
+            
+            </field>
+        </record>
+
+</odoo>

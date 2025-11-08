@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_quality_check_form_ow_quality" model="ir.ui.view">
+        <field name="name">quality.check.form.ow.quality</field>
+        <field name="model">quality.check</field>
+        <field name="inherit_id" ref="quality_control.quality_check_view_form"/>
+        <field name="arch" type="xml">
+            <header position="after">
+                <field name="show_qt9_reminder" invisible="1"/>
+                <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert" invisible="not show_qt9_reminder">
+                    <span>Please re-upload the inspection record to QT9 for document control</span>
+                    <button name="action_confirm_reupload_qt9" type="object" string="Confirm" class="btn-primary"/>
+                </div>
+            </header>
+        </field>
+    </record>
+</odoo>

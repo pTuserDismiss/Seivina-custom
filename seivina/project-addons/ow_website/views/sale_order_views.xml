@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form.ow.sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <div class="alert alert-warning d-flex justify-content-between align-items-center" invisible="not show_tax_exempt_banner or not id or not tax_exempt">
+                    <span>Tax Exemption Flagged: The customer has indicated tax-exempt status. Ensure supporting documentation is on file before fulfilling the order.</span>
+                    <div style="margin-left: auto; border: 1px solid black; border-radius: 4px;">
+                        <button name="action_confirm_tax_exempt" string="Confirm" class="btn-light" type="object"/>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='note']" position="before">
+                <field name="quote_message" placeholder="Enter any additional information or special requirements for this quote..."/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

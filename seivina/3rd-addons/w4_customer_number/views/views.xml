@@ -1,0 +1,38 @@
+<odoo>
+    <record id="form_customer_number" model="ir.ui.view">
+        <field name="name">res.partner.customer.number</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="ref" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+             <xpath expr="//span[@name='address_name']" position="before">
+                <field name="ref"/>
+            </xpath>
+        </field>
+    </record>
+
+     <record id="search_customer_number" model="ir.ui.view">
+        <field name="name">res.partner.search.customer.number</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+             <xpath expr="//field[@name='email']" position="before">
+                <field name="ref" filter_domain="[('ref', 'ilike', self)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="partner_kanban_view_customer_number" model="ir.ui.view">
+        <field name="name">res.partner.kanban.inherit.product.number</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='display_name']"  position="before">
+                <field name="ref"/> <br/> <br/>
+            </xpath>
+        </field>
+    </record>
+ </odoo>
+ 

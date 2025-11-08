@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mrp_add_substitute_wizard_form" model="ir.ui.view">
+        <field name="name">mrp.add.substitute.wizard.form</field>
+        <field name="model">mrp.add.substitute.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="production_id" invisible="1"/>
+                        <field name="available_product_ids" invisible="1"/>
+                        <field name="product_id" options="{'no_create': True, 'no_create_edit': True}" required="1"/>
+                        <field name="bom_line_id" invisible="1"/>
+                        <field name="available_substitute_ids" invisible="1"/>
+                        <field name="available_variant_ids" invisible="1"/>
+                        <field name="substitute_id" options="{'no_create': True, 'no_create_edit': True}" required="1"/>
+                        <field name="substitute_product_id" options="{'no_create': True, 'no_create_edit': True}" required="1"/>
+                        <label for="substitute_product_id" string="Quantity" invisible="not substitute_id"/>
+                        <div class="o_row" invisible="not substitute_id">
+                            <field name="substitute_quantity"/>
+                            <field name="substitute_product_uom_id" options="{'no_open': True, 'no_create': True}" groups="uom.group_uom" readonly="1"/>
+                        </div>
+                        <field name="operation" widget="radio"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_add_substitute" string="Add" type="object" class="oe_highlight"
+                            invisible="not substitute_id or operation != 'add'"/>
+                    <button name="action_replace_substitute" string="Replace" type="object" class="oe_highlight"
+                            invisible="not substitute_id or operation != 'replace'"/>
+                    <button string="Cancel" special="cancel" class="btn btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_mrp_add_substitute_wizard" model="ir.actions.act_window">
+        <field name="name">Add Substitute</field>
+        <field name="res_model">mrp.add.substitute.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

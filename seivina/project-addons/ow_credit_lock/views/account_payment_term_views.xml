@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_account_payment_term_form_ow_credit_lock" model="ir.ui.view">
+        <field name="name">account.payment.term.form.ow.credit.lock</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_form"/>
+        <field name="arch" type="xml">
+            <field name="days_next_month" position="after">
+                <field name="auto_release_credit_lock_production" optional="show"/>
+                <field name="auto_release_credit_lock_delivery" optional="show"/>
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="action_disable_bottom_of_page_specs" model="ir.actions.server">
+            <field name="name">Disable Bottom of Page Specifications</field>
+            <field name="model_id" ref="website.model_website"/>
+            <field name="state">code</field>
+            <field name="code">
+model._disable_bottom_of_page_specifications_all_websites()
+            </field>
+        </record>
+        <record id="dynamic_snippet_optional_action" model="ir.actions.server">
+            <field name="name">Product Optional</field>
+            <field name="model_id" ref="website_sale.model_product_product"/>
+            <field name="state">code</field>
+            <field name="code">
+DynamicFilter = model.env['website.snippet.filter']
+response = DynamicFilter._get_products('optional', product_template_id=request.params.get('productTemplateId'))
+            </field>
+        </record>
+        <record id="dynamic_filter_cross_selling_optional_products" model="website.snippet.filter">
+            <field name="action_server_id" ref="ow_website.dynamic_snippet_optional_action"/>
+            <field name="field_names">display_name,description_sale,image_512</field>
+            <field name="limit" eval="16"/>
+            <field name="id">999</field>
+            <field name="name">Optional Products</field>
+            <field name="product_cross_selling">True</field>
+        </record>
+    </data>
+</odoo>

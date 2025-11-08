@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="seq_picking_rma" model="ir.sequence">
+        <field name="name">Sequence RMA</field>
+        <field name="code">picking.rma</field>
+        <field name="prefix">WH/RMA/</field>
+        <field name="padding">5</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="seq_picking_vendor_rma" model="ir.sequence">
+        <field name="name">Sequence Return to Vendor</field>
+        <field name="code">picking.vendor.rma</field>
+        <field name="prefix">WH/RTV/</field>
+        <field name="padding">5</field>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_form_view_inherit_oakworks" model="ir.ui.view">
+        <field name="name">product.template.product.form.inherit.oakworks</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.view_template_property_form"/>
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="product_line"/>
+                <field name="inspection_required"/>
+                <field name="inspection_label"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_template_search_view_inherit_oakworks" model="ir.ui.view">
+        <field name="name">product.template.search.inherit.oakworks</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <filter name="categ_id" position="after">
+                <filter string="Inspection Label" name="group_inspection_label" context="{'group_by':'inspection_label'}"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

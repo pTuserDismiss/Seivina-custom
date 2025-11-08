@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Update ShipStation UPS tracking URL by code or name -->
+    <function model="shipstation.carrier.ept" name="write">
+        <value model="shipstation.carrier.ept" search="[('code', 'ilike', 'ups')]"/>
+        <value eval="{'tracking_url': 'https://www.ups.com/track?loc=en_US&amp;tracknum={TRACKING_NUMBER}'}"/>
+    </function>
+
+    <!-- Update ShipStation FedEx tracking URL by code or name -->
+    <function model="shipstation.carrier.ept" name="write">
+        <value model="shipstation.carrier.ept" search="[('code', 'ilike', 'fedex')]"/>
+        <value eval="{'tracking_url': 'https://www.fedex.com/apps/fedextrack/?action=track&amp;tracknumbers={TRACKING_NUMBER}'}"/>
+    </function>
+</odoo>

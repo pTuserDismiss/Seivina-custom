@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="sale.ptav_select" t-inherit-mode="extension">
+        <option position="attributes">
+            <attribute name="t-att-disabled" add="ptav.excluded" separator=" "/>
+        </option>
+        <select position="inside">
+            <option value="0"/>
+        </select>
+    </t>
+</templates>

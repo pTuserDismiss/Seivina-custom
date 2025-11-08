@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_stock_picking_type_form_ow_rma" model="ir.ui.view">
+        <field name="name">stock.picking.type.form.ow.rma</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field name="arch" type="xml">
+            <group name="first" position="after">
+                <group name="rma">
+                    <group string="RMA">
+                        <field name="is_return"/>
+                        <field name="show_return_actions"/>
+                    </group>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

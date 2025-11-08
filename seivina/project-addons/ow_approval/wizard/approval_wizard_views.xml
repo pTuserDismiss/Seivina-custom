@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_approval_wizard_form" model="ir.ui.view">
+        <field name="name">approval.wizard.form</field>
+        <field name="model">approval.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="alert alert-info" role="alert" invisible="not reason">
+                    <field name="reason" nolabel="1" readonly="1"/>
+                </div>
+                <group>
+                    <field name="pin" password="1" required="1"/>
+                    <field name="note"/>
+                </group>
+                <group invisible="1">
+                    <field name="res_model"/>
+                    <field name="res_id"/>
+                    <field name="method_approved"/>
+                    <field name="method_rejected"/>
+                </group>
+
+                <footer>
+                    <button string="Approve" class="btn-primary" type="object" name="action_approve"/>
+                    <button string="Reject" class="btn-secondary" type="object" name="action_reject"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_approval_wizard" model="ir.actions.act_window">
+        <field name="name">Sign-off Required</field>
+        <field name="res_model">approval.log</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

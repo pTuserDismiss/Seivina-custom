@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_crm_settings_inherit" model="ir.ui.view">
+        <field name="name">crm.settings.large.order</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="crm.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <setting id="crm_lead" position="after">
+                <setting string="Large Orders" id="large-order" help="Conditions for large order filter and notification">
+                    <div class="content-group mt8">
+                        <label for="total_quote_quantity_threshold" string="Total Quote Qty Greater Than" class="col-4 col-lg-4 o_light_label"/>
+                        <field name="total_quote_quantity_threshold" class="oe_inline"/>
+                    </div>
+                    <div class="content-group mt8">
+                        <label for="probability_threshold" string="Probability Greater Than" class="col-4 col-lg-4 o_light_label"/>
+                        <field name="probability_threshold" class="oe_inline"/>
+                        <span>%</span>
+                    </div>
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>

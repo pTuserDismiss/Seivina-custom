@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_helpdesk_ticket_type_list" model="ir.ui.view">
+        <field name="name">view.helpdesk.ticket.type.list</field>
+        <field name="model">helpdesk.ticket.type</field>
+        <field name="arch" type="xml">
+            <list string="Ticket Types" editable="top">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="worksheet_template_id" options="{'no_create': True}"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_helpdesk_ticket_type" model="ir.actions.act_window">
+        <field name="name">Ticket Types</field>
+        <field name="res_model">helpdesk.ticket.type</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem
+                id="helpdesk_ticket_type_menu"
+                name="Ticket Types"
+                action="action_helpdesk_ticket_type"
+                parent="helpdesk.helpdesk_menu_config"
+                sequence="200"/>
+
+</odoo>

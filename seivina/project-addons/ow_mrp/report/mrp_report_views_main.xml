@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_device_history_records" model="ir.actions.report">
+            <field name="name">Device History Records</field>
+            <field name="model">mrp.production</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ow_mrp.report_device_history_records</field>
+            <field name="report_file">ow_mrp.report.mrp_production_templates</field>
+            <field name="print_report_name">'Device History Records - %s' % object.name</field>
+            <field name="binding_model_id" ref="model_mrp_production"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

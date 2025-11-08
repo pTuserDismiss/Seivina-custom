@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="mrp_bom_form_view_inherit">
+        <field name="name">mrp.bom.form.inherited</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bom_line_ids']/list/field[@name='product_qty']" position="after">
+                <field name="sh_substitute_product_ids" widget="many2many_tags" groups="sh_mrp_substitute.group_allow_substitute_product"/>    
+                <field name="sh_substitute_product_qty" groups="sh_mrp_substitute.group_allow_substitute_product"/>                
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

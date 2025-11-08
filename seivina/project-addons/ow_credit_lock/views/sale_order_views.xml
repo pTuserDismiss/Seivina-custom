@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_sale_order_form_ow_credit_lock" model="ir.ui.view">
+        <field name="name">sale.order.form.ow.credit.lock</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <field name="locked_mrp_production_count" invisible="1"/>
+                <field name="locked_delivery_count" invisible="1"/>
+                <button name="action_release_credit_lock_productions" type="object" string="Release Manufacturing"
+                        class="btn-primary" invisible="locked_mrp_production_count &lt; 1"/>
+                <button name="action_release_credit_lock_deliveries" type="object" string="Release Delivery"
+                        class="btn-primary" invisible="locked_delivery_count &lt; 1"/>
+            </header>
+            <div name="button_box" position="inside">
+                <button name="action_view_approval_logs" type="object" class="oe_stat_button" icon="fa-list-alt" invisible="approval_logs_count == 0">
+                    <field name="approval_logs_count" widget="statinfo" string="Approval Logs"/>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,45 @@
+{
+    'name': 'Oakworks - Products',
+    "summary": "Customized module to manage products",
+    "version": "18.0.0.0.0",
+    "category": "Sales/Sales",
+    "author": "Novobi, LLC",
+    "website": "https://www.novobi.com",
+    "license": "OPL-1",
+    "application": False,
+    "installable": True,
+    "depends": [
+        "website_sale",
+        "product",
+        "stock",
+        "mrp",
+        "mrp_bom_attribute_match",
+        "ow_base",
+    ],
+    'data': [
+        'data/product_tag_data.xml',
+        'data/stock_route.xml',
+        'views/product_template_views.xml',
+        'views/stock_warehouse_orderpoint_views.xml',
+        'views/stock_picking_type_views.xml',
+        'views/stock_picking_views.xml',
+        'views/variant_templates.xml',
+        'views/product_views.xml',
+        'wizard/product_label_layout_views.xml',
+        'report/product_product_templates.xml',
+        'report/product_template_templates.xml',
+        'report/stock_report_views.xml',
+    ],
+    'assets': {
+        'web.assets_frontend': [
+            ('before', 'website_sale/static/src/js/website_sale.js', 'ow_product/static/src/js/*.js'),
+        ],
+        'web.assets_backend': [
+            'ow_product/static/src/js/product_template_attribute_line/*',
+            'ow_product/static/src/js/product_configurator_dialog/*',
+        ],
+        'web.report_assets_common': [
+            'ow_product/static/src/scss/report_label_sheet.scss',
+        ],
+    },
+}

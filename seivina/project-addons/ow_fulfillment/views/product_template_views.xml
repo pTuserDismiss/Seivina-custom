@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="product_template_form_view_fulfillment" model="ir.ui.view">
+        <field name="name">product.template.form.fulfillment</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='volume']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[contains(@class, 'o_row') and .//field[@name='volume']]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//div[contains(@class, 'o_row') and .//field[@name='volume']]" position="after">
+                <label for="shipping_length" string="Shipping Volume (L x W x H)"/>
+                <div class="o_row">
+                    <field name="shipping_length" nolabel="1"/>
+                    <field name="shipping_width" nolabel="1"/>
+                    <field name="shipping_height" nolabel="1"/>
+                </div>
+                <label for="shipping_volume" string=""/>
+                <div class="o_row">
+                    <field name="shipping_volume" nolabel="1"/>
+                    <span class="oe_inline"></span>
+                    <field name="volume_uom_name" nolabel="1"/>
+                </div>
+            </xpath>
+            
+            <xpath expr="//div[contains(@class, 'o_row') and .//field[@name='weight']]" position="after">
+                <label for="product_length" string="Product Volume (L x W x H)"/>
+                <div class="o_row">
+                    <field name="product_length" nolabel="1"/>
+                    <field name="product_width" nolabel="1"/>
+                    <field name="product_height" nolabel="1"/>
+                </div>
+                <label for="volume" string=""/>
+                <div class="o_row">
+                    <field name="volume" nolabel="1"/>
+                    <span class="oe_inline"></span>
+                    <field name="volume_uom_name" nolabel="1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

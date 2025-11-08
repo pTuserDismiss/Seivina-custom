@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="long_lead_time_tag" model="product.tag">
+        <field name="name">Long Lead Time</field>
+    </record>
+</odoo>

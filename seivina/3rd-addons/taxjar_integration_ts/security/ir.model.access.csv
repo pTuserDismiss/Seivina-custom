@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_taxjar_account_internal,taxjar.account.internal,taxjar_integration_ts.model_taxjar_account,base.group_user,1,0,0,0
+access_taxjar_account_admin,taxjar.account.admin,taxjar_integration_ts.model_taxjar_account,account.group_account_manager,1,1,1,1
+access_taxjar_category_internal,taxjar.category.internal,taxjar_integration_ts.model_taxjar_category,base.group_user,1,0,0,0
+access_taxjar_category_admin,taxjar.category.admin,taxjar_integration_ts.model_taxjar_category,account.group_account_manager,1,1,1,1
+access_taxjar_tax_rate_user,taxjar.taxjar.tax.rate.user,taxjar_integration_ts.model_taxjar_tax_rate,base.group_user,1,1,0,0
+access_taxjar_tax_rate_admin,taxjar.taxjar.tax.rate,taxjar_integration_ts.model_taxjar_tax_rate,account.group_account_manager,1,1,1,1
+access_taxjar_logs_user,taxjar.logs.user,taxjar_integration_ts.model_taxjar_logs,account.group_account_invoice,1,1,1,0
+access_taxjar_logs_admin,taxjar.logs,taxjar_integration_ts.model_taxjar_logs,account.group_account_manager,1,1,1,1
+access_sync_multi_transaction_taxjar_internal,sync.multi.transaction.taxjar.internal,taxjar_integration_ts.model_sync_multi_transaction_taxjar,account.group_account_invoice,1,0,0,0
+access_sync_multi_transaction_taxjar_admin,sync.multi.transaction.taxjar.admin,taxjar_integration_ts.model_sync_multi_transaction_taxjar,account.group_account_manager,1,1,1,1
+access_taxjar_address_validation,taxjar.address.validation,taxjar_integration_ts.model_taxjar_address_validation,base.group_user,1,1,1,1
+access_taxjar_verified_address,taxjar.verified.address,taxjar_integration_ts.model_taxjar_verified_address,base.group_user,1,1,1,1
+

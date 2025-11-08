@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.website.enforce.2fa</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='shared_user_account_setting']" position="after">
+                <setting id="enforce_twofa_internal_setting" groups="website.group_multi_website"
+                    help="When new internal user is created. It automatically enable the Two-Factor Authentication. Enforce 2FA Popup will shown to verify 2FA if not verified.">
+                    <field name="enforce_twofa_internal" />
+                </setting>
+                <setting id="enforce_twofa_public_setting" groups="website.group_multi_website"
+                    help="Enforce user to enable 2FA when user signup from website. If user click on 'Add to Cart' or 'Proceed to Check' Enforce 2FA Popup will shown to enable 2FA if not enabled.">
+                    <field name="enforce_twofa_public" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

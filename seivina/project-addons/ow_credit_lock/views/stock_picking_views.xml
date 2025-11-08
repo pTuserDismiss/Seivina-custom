@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_stock_picking_form_ow_credit_lock" model="ir.ui.view">
+        <field name="name">stock.picking.form.ow.credit.lock</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="after">
+                <field name="credit_lock" invisible="1"/>
+                <widget name="web_ribbon" title="Credit Locked" bg_color="text-bg-danger" invisible="not credit_lock"/>
+            </div>
+            <xpath expr="//button[@name='button_validate'][hasclass('oe_highlight')]" position="attributes">
+                <attribute name="invisible">state in ('draft', 'confirmed', 'done', 'cancel') or credit_lock</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_validate'][hasclass('o_btn_validate')]" position="attributes">
+                <attribute name="invisible">state in ('waiting', 'assigned', 'done', 'cancel') or credit_lock</attribute>
+            </xpath>
+            <div name="button_box" position="inside">
+                <button name="action_view_approval_logs" type="object" class="oe_stat_button" icon="fa-list-alt" invisible="approval_logs_count == 0">
+                    <field name="approval_logs_count" widget="statinfo" string="Approval Logs"/>
+                </button>
+            </div>
+            <header position="inside">
+                <button name="action_release_credit_lock" type="object" string="Release Credit Lock" class="btn-primary" invisible="not credit_lock"/>
+                <button name="action_activate_credit_lock" type="object" string="Activate Credit Lock" groups="ow_credit_lock.group_release_credit_lock" invisible="credit_lock or state in ('done', 'cancel')"/>
+            </header>
+        </field>
+    </record>
+</odoo>

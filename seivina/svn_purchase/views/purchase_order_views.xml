@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_purchase_order_form_ow_purchase" model="ir.ui.view">
+        <field name="name">purchase.order.form.ow.purchase</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="notes" position="before">
+                <field readonly="1" name="company_purchase_attachment_ids" widget="many2many_binary"/>
+            </field>
+            <field name="notes" position="attributes">
+                <attribute name="readonly">company_purchase_attachment_ids</attribute>
+            </field>
+        </field>
+    </record>
+    <!-- Inherit compare list view: make editable qty & price, remove Choose/Clear, add Approve -->
+    <record id="purchase_order_line_compare_tree_inherit_ow" model="ir.ui.view">
+        <field name="name">purchase.order.line.compare.list.inherit.ow</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase_requisition.purchase_order_line_compare_tree"/>
+        <field name="priority">2000</field>
+        <field name="arch" type="xml">
+            <!-- Enable row editing in list -->
+            <xpath expr="//list" position="attributes">
+                <attribute name="editable">bottom</attribute>
+                <attribute name="edit">1</attribute>
+            </xpath>
+
+
+            <!-- Allow editing of quantity and unit price -->
+            <xpath expr="//field[@name='product_qty']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='price_unit']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+
+
+            <!-- Remove per-row Choose and Clear buttons -->
+            <xpath expr="//button[@name='action_choose']" position="replace"/>
+            <xpath expr="//button[@name='action_clear_quantities']" position="replace"/>
+
+
+            <!-- Update header: remove Clear Selected and add Approve button -->
+            <xpath expr="//header" position="replace">
+                <header>
+                    <button name="action_approve_compare_selection" type="object" string="Approve" class="btn-primary"/>
+                </header>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="choose_delivery_carrier_view_form" model="ir.ui.view">
+        <field name="name">choose.delivery.carrier.form</field>
+        <field name="model">choose.delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.choose_delivery_carrier_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='o_row'][.//field[@name='display_price']]" position="after">
+                <div class="o_row" invisible="not top_3_rates">
+                    <field name="top_3_rates" widget="text" readonly="1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

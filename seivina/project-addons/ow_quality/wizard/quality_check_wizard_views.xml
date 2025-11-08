@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_quality_check_wizard_form_ow_quality" model="ir.ui.view">
+        <field name="name">quality.check.wizard.form.ow.quality</field>
+        <field name="model">quality.check.wizard</field>
+        <field name="inherit_id" ref="quality_control.view_quality_check_wizard"/>
+        <field name="arch" type="xml">
+            <field name="note" position="after">
+                <field name="show_qt9_reminder" invisible="1"/>
+                <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert" invisible="not show_qt9_reminder">
+                    <span>Please re-upload the inspection record to QT9 for document control</span>
+                    <button name="action_confirm_reupload_qt9" type="object" string="Confirm" class="btn-primary"/>
+                </div>
+            </field>
+            <xpath expr="//field[@name='note']/.." position="attributes">
+                <attribute name="class">flex-grow-1</attribute>
+                <attribute name="style">margin-right: 2rem !important;</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

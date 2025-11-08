@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_device_history_records">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-7">
+                                <h2>
+                                    <span t-field="o.name"/>
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="row mt32 mb32">
+                            <div class="col-3" t-if="o.origin">
+                                <strong>Source:</strong>
+                                <br/>
+                                <span t-field="o.origin"/>
+                            </div>
+                            <div class="col-3" t-if="o.user_id">
+                                <strong>Responsible:</strong>
+                                <br/>
+                                <span t-field="o.user_id"/>
+                            </div>
+                            <div class="col-3" t-if="o.date_start">
+                                <strong>Completion Date:</strong>
+                                <br/>
+                                <span t-field="o.date_finished"/>
+                            </div>
+                        </div>
+
+                        <div class="row mt32 mb32">
+                            <div class="col-3">
+                                <strong>Product:</strong>
+                                <br/>
+                                <span t-field="o.product_id"/>
+                            </div>
+                            <div class="col-3" t-if="o.product_description_variants">
+                                <strong>Description:</strong>
+                                <br/>
+                                <span t-field="o.product_description_variants"/>
+                            </div>
+                            <div class="col-3" t-if="o.qty_producing">
+                                <strong>Quantity Produced:</strong>
+                                <br/>
+                                <span t-field="o.qty_produced"/>
+                                <span t-field="o.product_uom_id.name" groups="uom.group_uom"/>
+                            </div>
+                            <div class="col-3" t-if="o.product_id.default_code">
+                                <strong>Part Number:</strong>
+                                <br/>
+                                <span t-field="o.product_id.default_code"/>
+                            </div>
+                            <div class="col-3" t-if="o.lot_producing_id">
+                                <strong>Lot/Serial Number:</strong>
+                                <br/>
+                                <span t-field="o.lot_producing_id.name"/>
+                            </div>
+                        </div>
+
+                        <div t-if="o.all_workorder_ids" groups="mrp.group_mrp_routings">
+                            <h3>
+                                <span t-if="o.state == 'done'">Operations Done</span>
+                                <span t-elif="o.is_planned">Operations Planned</span>
+                                <span t-else="">Operations</span>
+                            </h3>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>
+                                        <strong>Operation</strong>
+                                    </th>
+                                    <th>
+                                        <strong>WorkCenter</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Duration (minutes)</strong>
+                                    </th>
+                                    <th t-if="o.state in ('progress', 'to_close')">
+                                        <strong>Actual Duration (minutes)</strong>
+                                    </th>
+                                </tr>
+                                <tr t-foreach="o.all_workorder_ids" t-as="workoder">
+                                    <td>
+                                        <span t-field="workoder.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="workoder.workcenter_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-if="o.state != 'done'" t-field="workoder.duration_expected"/>
+                                        <span t-if="o.state == 'done'" t-field="workoder.duration"/>
+                                    </td>
+                                    <td t-if="o.state in ('progress', 'to_close')">
+                                        <span t-field="workoder.duration"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div t-if="o.all_move_raw_ids">
+                            <t t-call="ow_mrp.report_mrp_production_components"/>
+                        </div>
+
+                        <div t-if="o.all_quality_check_ids">
+                            <h3>
+                                <span>Quality Checks</span>
+                            </h3>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>
+                                        <strong>Name</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Date</strong>
+                                    </th>
+                                    <th>
+                                        <strong>PIC</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Test Type</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Result</strong>
+                                    </th>
+                                </tr>
+                                <tr t-foreach="o.all_quality_check_ids" t-as="qc">
+                                    <td>
+                                        <span t-field="qc.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="qc.write_date"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="qc.user_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="qc.test_type_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="qc.quality_state"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div t-if="o.linked_repair_order_ids">
+                            <h3>
+                                <span>Repairs</span>
+                            </h3>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>
+                                        <strong>Name</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Repaired Quantity</strong>
+                                    </th>
+                                     <th>
+                                        <strong>Type</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Product</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Quantity</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Unit</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Lot/Serial Number</strong>
+                                    </th>
+                                </tr>
+                                <tr t-foreach="o.linked_repair_order_ids" t-as="repair">
+                                    <t t-foreach="o.linked_repair_order_ids.move_ids" t-as="move">
+                                        <td>
+                                            <span t-field="repair.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="repair.product_qty"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="move.repair_line_type"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="move.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="move.product_uom_qty"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="move.product_uom.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-out="', '.join(map(lambda x: x.name, move.lot_ids))"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div t-if="o.move_dest_ids">
+                            <h3>
+                                <span>Shipping Info</span>
+                            </h3>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>
+                                        <strong>Product</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Part Number</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Lot/Serial Number</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Shipped Qty</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Shipped Date</strong>
+                                    </th>
+                                    <th>
+                                        <strong>SO Number</strong>
+                                    </th>
+                                </tr>
+                                <tr t-foreach="o.move_dest_ids" t-as="move">
+                                    <t t-if="move.picking_id.picking_type_code == 'outgoing'">
+                                        <td>
+                                            <span t-field="move.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.product_id.default_code"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.lot_producing_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-if="move.is_done" t-field="move.quantity"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="move.date"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="move.origin"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_mrp_production_components">
+        <h3>
+            <span>
+            Components
+            </span>
+        </h3>
+        <table class="table table-sm">
+            <div class="oe_structure"></div>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th t-if="o.state in ('progress', 'to_close','done')">Consumed</th>
+                    <th>To Consume</th>
+                    <th>Part Number</th>
+                    <th>Lot/Serial Numbers</th>
+                    <th>Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr t-foreach="o.all_move_raw_ids" t-as="raw_line">
+                    <td>
+                        <span t-if="raw_line.origin != o.name">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</span>
+                        <span t-field="raw_line.product_id"/>
+                    </td>
+                    <td t-if="o.state in ('progress', 'to_close','done')">
+                        <div>
+                            <span t-field="raw_line.quantity"/>
+                        </div>
+                    </td>
+                    <td>
+                        <span t-field="raw_line.product_uom_qty">25</span>
+                        <span t-field="raw_line.product_uom" groups="uom.group_uom"/>
+                    </td>
+                    <td>
+                        <span t-field="raw_line.product_id.default_code"/>
+                    </td>
+                    <td>
+                        <span t-out="', '.join(map(lambda x: x.name, raw_line.lot_ids))"/>
+                    </td>
+                    <td>
+                        <span t-field="raw_line.source_ref"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+
+    <template id="report_lot_device_history_records">
+        <t t-call="ow_mrp.report_device_history_records"/>
+    </template>
+</odoo>

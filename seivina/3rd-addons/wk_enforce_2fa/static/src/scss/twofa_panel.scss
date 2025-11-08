@@ -1,0 +1,35 @@
+.two_fa_validation_panel {
+  text-align: start;
+
+  .container {
+    overflow: auto;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+
+  .tfa_secret {
+    grid-template-columns: auto min-content;
+    border: 1px solid #017e84;
+    color: #71639e;
+    font-size: 12px;
+    font-weight: 500;
+
+    span {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+
+  #collapseTotpSecret {
+    width: 65%;
+  }
+}
+.totp_enforced_disabled {
+  opacity: 0.5 !important;
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_reorder_report_search" model="ir.ui.view">
+        <field name="name">stock.warehouse.orderpoint.search.ow.product</field>
+        <field name="model">stock.warehouse.orderpoint</field>
+        <field name="inherit_id" ref="stock.stock_reorder_report_search"/>
+        <field name="arch" type="xml">
+            <filter name="filter_not_snoozed" position="after">
+                <separator/>
+                <filter string="Long Lead Time Products" name="filter_long_lead_time"
+                        domain="[('product_id.is_long_lead_time_product', '=', True)]"/>
+
+            </filter>
+        </field>
+    </record>
+</odoo>

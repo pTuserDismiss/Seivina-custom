@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_quality_point_form_ow_quality" model="ir.ui.view">
+        <field name="name">quality.point.form.ow.quality</field>
+        <field name="model">quality.point</field>
+        <field name="inherit_id" ref="quality.quality_point_view_form"/>
+        <field name="arch" type="xml">
+            <field name="team_id" position="after">
+                <field name="show_qt9_reminder"/>
+            </field>
+            
+            <field name="measure_frequency_type" position="after">
+                <label for="interval_value" string="" invisible="measure_frequency_type != 'interval'"/>
+                <div class="o_row" invisible="measure_frequency_type != 'interval'">
+                    <span>1 / </span>
+                    <field name="interval_value" nolabel="1" invisible="measure_frequency_type != 'interval'"/>
+                    <span>times</span>
+                </div>
+                <field name="vendor_ids" invisible="measure_frequency_type != 'interval'" widget="many2many_tags"/>
+            </field>
+            <xpath expr="//label[@for='measure_frequency_value']" position="attributes">
+                <attribute name="invisible">measure_frequency_type == 'interval'</attribute>
+            </xpath>
+            <xpath expr="//field[@name='measure_frequency_value']" position="attributes">
+                <attribute name="invisible">measure_frequency_type == 'interval'</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

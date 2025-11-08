@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="add_substitute_wizard_view_form" model="ir.ui.view">
+        <field name="name">sh.add.substitute.wizard.form</field>
+        <field name="model">sh.add.substitute.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="sh_raw_product_ids" widget="many2many_tags" invisible="1"/>
+                        <field name="sh_product_id" domain="[('id','in',sh_raw_product_ids)]"  options="{'no_create': True, 'no_create_edit': True}"/>
+                        <field name="sh_sub_product_ids" widget="many2many_tags" invisible="1"/>
+                        <field name="sh_substitute_product_id" domain="[('id','in',sh_sub_product_ids)]" options="{'no_create': True, 'no_create_edit': True}"/>
+                        <field name="sh_substitute_product_qty"/>
+                        <field name="sh_operation" widget="radio"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="add_substitute" string="Add" type="object" class="oe_highlight" invisible="sh_operation == 'replace'"/>
+                    <button name="add_substitute" string="Replace" type="object" class="oe_highlight" invisible="sh_operation == 'add'"/>
+                    <button string="Cancel" class="oe_highlight" special="cancel"/> 
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_add_substitute_wizard" model="ir.actions.act_window">
+        <field name="name">Add Substitute</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sh.add.substitute.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="add_substitute_wizard_view_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

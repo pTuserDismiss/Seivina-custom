@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="email_template_large_order" model="mail.template">
+            <field name="name">Large Order Notification</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="email_from">{{user.email}}</field>
+            <field name="subject">Upcoming Large Order Notification - {{ object.name or 'n/a' }}</field>
+            <field name="body_html" type="html">
+                <p>Hello,</p>
+
+                <p>Please be informed of an upcoming large order from a potential customer.</p>
+
+                <p><strong>Lead Information</strong><br/>
+                - Lead name: <t t-out="object.name or ''" /><br/>
+                - Total quantity: <t t-out="str(max((sum(line.product_uom_qty for line in order.order_line) for order in object.order_ids), default=0)) or ''" /><br/>
+                - Probability: <t t-out="object.probability or ''" />%<br/>
+                - Salesperson: <t t-out="object.user_id.name or ''" /></p>
+
+                <p>Please click on the button below to confirm readiness.</p>
+
+                <p>
+                    <a t-att-href="object.confirm_url()" target="_blank"
+                        style="background-color: #875a7b; text-decoration: none; color: #fff; padding: 8px 32px; border-radius: 5px; margin-left: 40px">Confirm</a>
+                </p>
+
+                <p>Thank you.</p>
+            </field>
+        </record>
+    
+        <record id="email_template_large_order_confirmation_to_salesperson" model="mail.template">
+            <field name="name">Large Order Confirmation To Salesperson</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="subject">Large Order Confirmed - {{ object.name or 'n/a' }}</field>
+            <field name="email_to">{{object.user_id.email}}</field>
+            <field name="body_html" type="html">
+                <p style="margin-top: 15px;"><t t-out="user.name or ''" /> confirmed the readiness.</p>
+            </field>
+        </record>
+
+        <template id="large_order_thank_you_template" name="Large Order Confirmation Thanks Page">
+            <t t-call="website.layout">
+                <div class="container mt-5 mb-5">
+                    <h2>Thank you for your confirmation!</h2>
+                    <p>The readiness for the lead <strong><t t-esc="lead.name"/></strong> has been acknowledged.</p>
+                </div>
+            </t>
+        </template>
+
+        <template id="mail_notification_layout_ow">
+            <html t-att-lang="lang">
+            <head>
+                <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+            </head>
+            <body style="font-family:Verdana, Arial,sans-serif; color: #454748;">
+                <div style="max-width: 900px; width: 100%;">
+                    <div style="padding: 0px;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="width: 100%; margin-top: 5px;">
+                            <tbody>
+                                <tr>
+                                    <td valign="center" style="white-space:nowrap;">
+                                        <div>
+                                            <span>
+                                                <a t-att-href="record.get_formview_url()" target="_blank"
+                                                    style="background-color: #875a7b; text-decoration: none; color: #fff; padding: 8px 16px 8px 16px; border-radius: 5px;">View Lead</a>
+                                                &amp;nbsp;&amp;nbsp;
+                                                <strong><t t-out="record.name or ''" /></strong>
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="center">
+                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin: 10px 0px;"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- CONTENT -->
+                    <div t-out="message.body" style="font-size: 13px;"/>
+                </div>
+            </body>
+            </html>
+        </template>
+    </data>
+</odoo>

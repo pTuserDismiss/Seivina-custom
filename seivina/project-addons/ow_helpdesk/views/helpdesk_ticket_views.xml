@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="helpdesk_ticket_view_form_inherit_ow" model="ir.ui.view">
+        <field name='name'>helpdesk.ticket.form.inherit.ow</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <field name='email_cc' position="after">
+                <field name="ticket_type_id" options="{'no_create': True, 'no_open': True}"/>
+            </field>
+            <xpath expr="//button[@name='action_open_helpdesk_ticket']" position="before">
+                <button
+                    string="Worksheet"
+                    class="oe_stat_button"
+                    name="action_ticket_worksheet"
+                    icon="fa-pencil" type="object"
+                    invisible="not ticket_type_id or not worksheet_template_id">
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="helpdesk_ticket_view_kanban_inherit_ow" model="ir.ui.view">
+        <field name='name'>helpdesk.ticket.kanban.inherit.ow</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='commercial_partner_id']" position="after">
+                <field name="ticket_type_id" options="{'no_create': True, 'no_open': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="helpdesk_ticket_view_search_inherit_ow" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.search.inherit.ow</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_search_base"/>
+        <field name="arch" type="xml">
+            <field name="stage_id" position="after">
+                <field name="ticket_type_id" string="Ticket Type" filter_domain="[('ticket_type_id', 'ilike', self)]"/>
+            </field>
+            <filter name="assignee" position="after">
+                <filter string="Ticket Type" name="ticket_type_id" context="{'group_by':'ticket_type_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="helpdesk_tickets_view_tree_inherit_ow" model="ir.ui.view">
+        <field name='name'>helpdesk.ticket.tree.inherit.ow</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="ticket_type_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

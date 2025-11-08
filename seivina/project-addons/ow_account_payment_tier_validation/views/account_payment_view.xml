@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_account_payment_search_inherit_oakworks" model="ir.ui.view">
+        <field name="name">account.payment.search.inherit.oakworks</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_search" />
+        <field name="arch" type="xml">
+            <filter name="reconciled" position="after">
+                <separator />
+                <filter
+                    name="needs_review"
+                    string="Needs my Review"
+                    domain="[('reviewer_ids','in',uid), ('state', 'not in', ['in_process', 'cancel'])]"
+                    help="My Accounts to review"
+                />
+                <filter
+                    name="no_validation_requested"
+                    string="No Validation Requested"
+                    domain="[('review_ids', '=', False), ('state', 'not in', ['in_process', 'cancel'])]"
+                    help="Payments where no validation has been requested"
+                />
+                <filter
+                    name="validation_not_started"
+                    string="Validation Not Started"
+                    domain="[('reviewer_ids', '=', False), ('state', 'not in', ['in_process', 'cancel']), ('validated', '=', False), ('rejected', '=', False)]"
+                    help="Payments where validation has not started"
+                />
+                <filter
+                    name="validation_in_progress"
+                    string="Validation In Progress"
+                    domain="[('reviewer_ids', '!=', False), ('state', 'not in', ['in_process', 'cancel'])]"
+                    help="Payments Pending to Validate"
+                />
+                <filter
+                    name="tier_validated"
+                    string="Validated"
+                    domain="[('validated', '=', True)]"
+                    help="Payments validated and ready to be confirmed"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <record id="view_account_payment_form_inherit_oakworks" model="ir.ui.view">
+        <field name="name">account.payment.form.inherit.oakworks</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form" />
+        <field name="arch" type="xml">
+            <button name="action_post" position="attributes">
+                <attribute name="invisible">hide_post_button</attribute>
+            </button>
+            <button name="action_cancel" position="attributes">
+                <attribute name="invisible">hide_cancel_button</attribute>
+            </button>
+        </field>
+    </record>
+
+</odoo>

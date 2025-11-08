@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="paperformat_label_sheet_4x2p5" model="report.paperformat">
+            <field name="name">Dymo Label Sheet</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">101</field>
+            <field name="page_width">63</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="disable_shrinking" eval="True"/>
+            <field name="dpi">96</field>
+        </record>
+
+        <record id="report_product_template_label_4x2p5" model="ir.actions.report">
+            <field name="name">Product Label 4x2.5 (PDF)</field>
+            <field name="model">product.template</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ow_product.report_producttemplatelabel4x2p5</field>
+            <field name="report_file">ow_product.report_producttemplatelabel4x2p5</field>
+            <field name="paperformat_id" ref="ow_product.paperformat_label_sheet_4x2p5"/>
+            <field name="print_report_name">'Products Labels - %s' % (object.name)</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+        
+        <record id="label_product_product_zpl_ow" model="ir.actions.report">
+            <field name="name">Product Label (ZPL)</field>
+            <field name="model">product.product</field>
+            <field name="report_type">qweb-text</field>
+            <field name="report_name">ow_product.label_product_product_view_zpl_ow</field>
+            <field name="report_file">ow_product.label_product_product_view_zpl_ow</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+        
+    </data>
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <template id="report_productlabel_4x2p5">
+            <t t-call="web.html_container">
+                <t t-set="barcode_size" t-value="'width:80mm;height:10mm'"/>
+                <t t-set="table_style" t-value="'width:100mm;height:62mm;'"/>
+                <t t-foreach="products" t-as="product">   
+                    <div class="o_label_full o_label_medium_text" t-att-style="table_style">
+                        <div class="o_label_left_column o_label_full_with">
+                            <span>P/N:&amp;nbsp;</span><span class="text-nowrap" t-field="product.default_code"/>
+                        </div>
+                        <div class="o_label_left_column o_label_full_with">
+                            <span>Product:&amp;nbsp;</span><span class="text-nowrap" t-field="product.name"/>
+                        </div>
+                        <t t-if="po_no">
+                            <div class="o_label_left_column o_label_full_with">
+                                <span>Supplier:&amp;nbsp;</span><span class="text-nowrap" t-out="supplier"/>
+                            </div>
+                            <div class="o_label_left_column o_label_full_with">
+                                <span>PO No:&amp;nbsp;</span><span class="text-nowrap" t-out="po_no"/>
+                                <span>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</span>
+                                <span>Date Rec:&amp;nbsp;</span><span class="text-nowrap" t-out="receiving_date"/>
+                            </div>
+                        </t>
+                        <br/>
+                        <br/>
+                        <div class= "text-center o_label_small_barcode">
+                            <t t-if="product.default_code">
+                                <div t-field="product.default_code" style="padding:0" t-options="{'widget': 'barcode', 'symbology': 'auto', 'img_style': barcode_size}"/>
+                                <span class="text-center" t-field="product.default_code"/>
+                            </t>
+                        </div>
+                    </div>
+                </t>                
+            </t>
+        </template>
+
+        <template id="label_product_product_view_zpl_ow">
+                <t t-foreach="products" t-as="product">
+                        <t t-set="default_code" t-value="product.default_code"/>
+                        <t t-set="product_name" t-value="product.name"/>
+                        <t t-translation="off">
+^XA^CI28
+^FT100,80^A0N,40,30^FDP/N: <t t-out="default_code"/>^FS
+^FT100,130^A0N,40,30^FDProduct: <t t-out="product_name"/>^FS
+<t t-if="po_no">
+^FT100,180^A0N,40,30^FDSupplier: <t t-out="supplier"/>^FS
+^FT100,230^A0N,40,30^FDPO No: <t t-out="po_no"/>     Date Rec: <t t-out="receiving_date"/>^FS
+</t>
+<t t-if="product.default_code">
+^FO100,280^BY3
+^BCN,100,Y,N,N
+^FD<t t-out="default_code"/>^FS
+</t>
+^XZ
+                        </t>
+                </t>
+        </template>
+
+    </data>
+</odoo>

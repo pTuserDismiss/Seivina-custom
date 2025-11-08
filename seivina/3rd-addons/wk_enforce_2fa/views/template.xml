@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <template id="navigation_buttons" inherit_id="website_sale.navigation_buttons">
+        <xpath expr="//a[@name='website_sale_main_button']" position="replace">
+            <a role="button" name="website_sale_main_button"
+                t-attf-class="#{_cta_classes} btn btn-primary #{not website_sale_order._is_cart_ready() and 'disabled'} #{_form_send_navigation and 'order-lg-3 w-100 w-lg-auto ms-lg-auto' or 'w-100'}"
+                t-att-data-href="step_specific_values['main_button_href']">
+                <t t-out="step_specific_values['main_button']" />
+                <i class="fa fa-angle-right ms-2 fw-light" />
+            </a>
+        </xpath>
+    </template>
+
+    <template id="frontend_layout" inherit_id="web.frontend_layout">
+        <xpath expr="//main[1]" position="before">
+            <span t-if="request.env.user and request.env.user.totp_enforced_compute"
+                class="alert alert-warning text-center" style="padding:0.5rem 0.5rem;">
+                Two-factor authentication not enabled, Activate Two-factor authentication.
+            </span>
+        </xpath>
+    </template>
+
+    <template id="enforce_twofa">
+        <t t-call="web.frontend_layout">
+            <div class="modal two_fa_validation_panel" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="border: 1px solid #c3c3c3;">
+                        <div class="modal-header text-center">
+                            <h6 class="modal-title w-100">Two Factor Authentication not enabled<br />
+                                Kindly follow the below steps to enable Two Factor Authentication</h6>
+                        </div>
+                        <div class="modal-body">
+                            <div
+                                t-attf-class="alert alert-danger enforce-notify #{ '' if error else 'd-none' }"
+                                role="alert">
+                                <t t-esc="error" />
+                            </div>
+                            <div class="o_auth_totp_enable_2FA container mt-2">
+                                <div class="mb-3 w-100">
+                                    <h5 class="fw-bold">Authenticator App Setup</h5>
+                                    <ul>
+                                        <div class="d-md-none d-block">
+                                            <li> Click on this link to open your authenticator app </li>
+                                        </div>
+                                        <li>
+                                            <div class="d-flex align-items-center flex-wrap">
+                                                <span class="d-md-none d-block">Or install an
+                                                    authenticator app</span>
+                                                <span class="d-none d-md-block">Install an
+                                                    authenticator app on your mobile device</span>
+                                                <div class="d-block d-md-none">
+                                                    <a
+                                                        href="https://play.google.com/store/search?q=authenticator&amp;c=apps"
+                                                        class="mx-2" target="blank">
+                                                        <img alt="On Google Play"
+                                                            style="width: 24px;"
+                                                            src="/base_setup/static/src/img/logo_google_play.png" />
+                                                    </a>
+                                                    <a href="http://appstore.com/2fa" class="mx-2"
+                                                        target="blank">
+                                                        <img alt="On Apple Store"
+                                                            style="width: 24px;"
+                                                            src="/base_setup/static/src/img/logo_apple_store.png" />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <span class="text-muted">Popular ones include Authy, Google
+                                            Authenticator or the Microsoft Authenticator.</span>
+                                        <li>Look for an "Add an account" button</li>
+                                        <li>
+                                            <span class="d-none d-md-block">When requested to do so,
+                                                scan the barcode below</span>
+                                            <span class="d-block d-md-none">When requested to do so,
+                                                copy the key below</span>
+                                        </li>
+                                    </ul>
+                                    <!-- Desktop version -->
+                                    <div class="text-center d-none d-md-block">
+                                        <img t-att-src="'data:image/png;base64,%s'%qr_code"
+                                            name="qrcode" />
+                                        <h5 class="fw-bold">
+                                            <a data-bs-toggle="collapse" href="#collapseTotpSecret"
+                                                role="button" aria-expanded="false"
+                                                aria-controls="collapseTotpSecret">Cannot scan it?</a>
+                                        </h5>
+                                        <div class="collapse m-auto" id="collapseTotpSecret">
+                                            <div class="d-grid overflow-hidden tfa_secret">
+                                                <span>
+                                                    <t t-esc="secret" />
+                                                </span>
+                                                <button
+                                                    class="text-nowrap btn btn-sm btn-primary o_clipboard_button o_btn_char_copy tfa_secret_copy rounded-0"
+                                                    t-att-data="secret">
+                                                    <span class="fa fa-clipboard mx-1"></span>
+                                                    <span>Copy</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Mobile Version -->
+                                    <div class="text-center d-block d-md-none">
+                                        <div class="d-grid overflow-hidden tfa_secret">
+                                            <span>
+                                                <t t-esc="secret" />
+                                            </span>
+                                            <button
+                                                class="text-nowrap btn btn-sm btn-primary tfa_secret_copy rounded-0"
+                                                t-att-data="secret">
+                                                <span class="fa fa-clipboard mx-1"></span>
+                                                <span>Copy</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <h5 class="fw-bold mt-2">Enter your six-digit code below</h5>
+                                    <div class="mt-2">
+                                        <label for="code" class="px-0 fw-bold">Verification Code</label>
+                                        <br />
+                                        <div
+                                            class="o_field_widget o_required_modifier o_field_char o_field_highlight px-0 me-2">
+                                            <form method="POST" action="" class=""
+                                                id="web_login_enforce">
+                                                <input type="hidden" name="csrf_token"
+                                                    t-att-value="request.csrf_token()" />
+                                                <input type="hidden" name="redirect"
+                                                    t-att-value="redirect" />
+                                                <input type="hidden" name="secret"
+                                                    t-att-value="secret" />
+                                                <input class="o_input" name="code" id="code"
+                                                    type="number" autocomplete="off" maxlength="7"
+                                                    placeholder="e.g. 123456" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary btn-verify">Verify</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

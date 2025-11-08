@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_producttemplatelabel4x2p5">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-call="ow_product.report_productlabel_4x2p5"/>
+            </div>
+        </t>
+    </template>
+
+</odoo>

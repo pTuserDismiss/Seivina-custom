@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_delivery_document2" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div[@id='informations']" position="after">
+            <div t-if="o.carrier_tracking_url" class="report-wrapping-flexbox clearfix row mb-4">
+                <strong>Shipping URL</strong>
+                <a t-att-href="o.carrier_tracking_url" target="_blank" class="m-0">
+                    <t t-esc="o.carrier_tracking_url"/>
+                </a>
+            </div>
+        </xpath>
+    </template>
+</odoo>

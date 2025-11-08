@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="request_quote_button" name="Request Quote Button">
+        <div class="text-center"> 
+            <button type="button" 
+                t-attf-class="#{_cta_classes} btn btn-primary #{not website_sale_order._is_cart_ready() and 'disabled'} #{_form_send_navigation and 'order-lg-3 w-100 w-lg-auto ms-lg-auto' or 'w-100'}"
+                data-bs-toggle="modal"
+                data-bs-target="#requestQuoteModal"
+            >
+                <i class="fa fa-file-text" style="margin-right: 0.5em;"></i>Request Quote
+            </button>
+        </div>
+        <div class="modal fade" id="requestQuoteModal" tabindex="-1" aria-labelledby="requestQuoteModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="requestQuoteModalLabel">Request Quote</h5>
+                    </div>
+                    <form id="requestQuoteForm" action="/shop/request_quote" method="post">
+                        <div class="modal-body">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <input type="hidden" name="order_id" t-att-value="website_sale_order.id"/>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="customer_name" class="form-label">Customer Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="customer_name" name="customer_name" required="1"/>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="customer_email" class="form-label">Customer Email <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="customer_email" name="customer_email" required="1"/>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="customer_phone" class="form-label">Customer Phone Number <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" id="customer_phone" name="customer_phone" required="1"/>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="customer_address" class="form-label">Customer Address <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="customer_address" name="customer_address" rows="2" required="1"></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="quote_message" class="form-label">Attach Messages (Optional)</label>
+                                <textarea class="form-control" id="quote_message" name="quote_message" rows="3" placeholder="Any additional information or special requirements..."></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="extra_info" inherit_id="website_sale.extra_info">
+        <xpath expr="//div[@class='s_website_form_field col-12 py-2 mb-0']" position="after">
+            <t t-if="website_sale_order._has_quote_checkout()">
+                <div class="s_website_form_field col-12 py-2 mb-0" data-type="selection" data-name="distributor_name">
+                    <div class="s_col_no_resize s_col_no_bgcolor row">
+                        <label class="s_website_form_label col-form-label col-sm-auto" style="width: 200px" for="distributor_name">
+                            <span class="s_website_form_label_content">Name of Distributor or Health System You Are Working With</span>
+                        </label>
+                        <div class="col-sm">
+                            <select id="distributor_name" class="s_website_form_input form-control" name="distributor_name">
+                                <option value="">Select Distributor Type</option>
+                                <option value="primary_distributor">Primary Distributor</option>
+                                <option value="secondary_distributor">Secondary Distributor</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="s_website_form_field col-12 py-2 mb-0" data-type="char" data-name="other_distributor">
+                    <div class="s_col_no_resize s_col_no_bgcolor row">
+                        <label class="s_website_form_label col-form-label col-sm-auto" style="width: 200px" for="other_distributor">
+                            <span class="s_website_form_label_content">Other Distributor</span>
+                        </label>
+                        <div class="col-sm">
+                            <input type="text" id="other_distributor" class="s_website_form_input form-control" name="other_distributor" placeholder="Specify distributor name if not in the list"/>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="s_website_form_field col-12 py-2 mb-0" data-type="selection" data-name="shipping_service_level">
+                    <div class="s_col_no_resize s_col_no_bgcolor row">
+                        <label class="s_website_form_label col-form-label col-sm-auto" style="width: 200px" for="shipping_service_level">
+                            <span class="s_website_form_label_content">Shipping Service Level</span>
+                        </label>
+                        <div class="col-sm">
+                            <select id="shipping_service_level" class="s_website_form_input form-control" name="shipping_service_level">
+                                <option value="">Select Shipping Service Level</option>
+                                <option value="dock_to_dock">Dock to Dock</option>
+                                <option value="curbside_liftgate">Curbside And Liftgate</option>
+                                <option value="white_glove">White Glove</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="s_website_form_field col-12 py-2 mb-0" data-type="selection" data-name="business_type">
+                    <div class="s_col_no_resize s_col_no_bgcolor row">
+                        <label class="s_website_form_label col-form-label col-sm-auto" style="width: 200px" for="business_type">
+                            <span class="s_website_form_label_content">Business Type</span>
+                        </label>
+                        <div class="col-sm">
+                            <select id="business_type" class="s_website_form_input form-control" name="business_type">
+                                <option value="">Select Business Type</option>
+                                <option value="dealer_medical">Dealer-Medical Equipment</option>
+                                <option value="hospital">Hospital</option>
+                                <option value="medical_architect">Medical Architect/Design</option>
+                                <option value="surgery_center">Surgery Center</option>
+                                <option value="clinic">Clinic</option>
+                                <option value="physician_practice">Physician Practice</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="s_website_form_field col-12 py-2 mb-0" data-type="boolean" data-name="tax_exempt">
+                    <div class="s_col_no_resize s_col_no_bgcolor row">
+                        <label class="s_website_form_label col-form-label col-sm-auto" style="width: 200px" for="tax_exempt">
+                            <span class="s_website_form_label_content">Tax-exempt?</span>
+                        </label>
+                        <div class="col-sm">
+                            <div class="form-check">
+                                <input type="checkbox" id="tax_exempt" class="s_website_form_input form-check-input" name="tax_exempt" value="1"/>
+                                <label class="form-check-label" for="tax_exempt">
+                                    Yes, I am tax-exempt
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+        <xpath expr="//label[@for='sale2']/span[text()='Give us your feedback']" position="replace">
+            <span t-if="website_sale_order._has_quote_checkout()" class="s_website_form_label_content">Other Information</span>
+            <span t-else="" class="s_website_form_label_content">Give us your feedback</span>
+        </xpath>
+        <xpath expr="//textarea[@id='sale2']" position="attributes">
+            <attribute name="t-attf-name">{{'Other Information' if website_sale_order._has_quote_checkout() else 'Give us your feedback'}}</attribute>
+        </xpath>
+        <xpath expr="//a[@name='website_sale_main_button']" position="replace">
+            <a role="button"
+                t-if="website_sale_order._has_quote_checkout()"
+                name="website_sale_main_button"
+                class="s_website_form_send btn btn-primary order-lg-3 w-100 w-lg-auto ms-lg-auto"
+                href="/shop/confirm_order">
+                Continue
+                <i class="fa fa-angle-right ms-2 fw-light"/>
+            </a>
+            <a role="button"
+                t-else=""
+                name="website_sale_main_button"
+                class="s_website_form_send btn btn-primary order-lg-3 w-100 w-lg-auto ms-lg-auto"
+                href="/shop/confirm_order">
+                Continue checkout
+                <i class="fa fa-angle-right ms-2 fw-light"/>
+            </a>
+        </xpath>
+    </template>
+
+    <template id="total" inherit_id="website_sale.total">
+        <xpath expr="//tr[@id='order_total_untaxed']" position="attributes">
+            <attribute name="t-attf-class">{{'d-none' if website_sale_order._has_quote_checkout() else ''}}</attribute>
+        </xpath>
+        <xpath expr="//tr[@id='order_delivery']" position="attributes">
+            <attribute name="t-attf-class">{{'d-none' if website_sale_order._has_quote_checkout() else ''}}</attribute>
+        </xpath>
+        <xpath expr="//div[@id='cart_total']//table/tr[@id='order_total_taxes']" position="attributes">
+            <attribute name="t-attf-class">{{'d-none' if website_sale_order._has_quote_checkout() else ''}}</attribute>
+        </xpath>
+    </template>
+
+    <template id="payment" inherit_id="website_sale.payment">
+        <xpath expr="//div[@id='payment_method']" position="attributes">
+            <attribute name="t-attf-class">{{'d-none' if website_sale_order._has_quote_checkout() else 'o_not_editable mt-4'}}</attribute>
+        </xpath>
+    </template>
+
+    <template id="payment_form_wire_transfer_default" inherit_id="payment.form">
+        <xpath expr="//t[@t-set='selected_method_id']" position="replace">
+            <t t-set="wire_transfer_method" t-value="payment_methods_sudo.filtered(lambda p: p.code == 'wire_transfer')[:1]"/>
+            <t t-set="selected_method_id"
+               t-value="not selected_token_id
+                        and (wire_transfer_method.id if wire_transfer_method else (len(payment_methods_sudo) == 1 and payment_methods_sudo[:1].id))"
+            />
+        </xpath>
+    </template>
+
+    <template id="payment_method_wire_transfer_priority" inherit_id="payment.method_form">
+        <xpath expr="//input[@name='o_payment_radio']" position="attributes">
+            <attribute name="t-att-checked">pm_sudo.code == 'wire_transfer' or (is_selected and pm_sudo.code != 'wire_transfer')</attribute>
+        </xpath>
+    </template>
+
+    <template id="checkout_layout" inherit_id="website_sale.checkout_layout">
+        <xpath expr="//t[@t-set='no_footer']" position="after">
+            <t t-set="hide_promotions" t-value="website_sale_order._has_quote_checkout()"/>
+        </xpath>
+    </template>
+
+    <template id="navigation_buttons" inherit_id="website_sale.navigation_buttons">
+        <xpath expr="//t[@t-set='step_specific_values']" position="after">
+            <t t-set="hide_payment_button" t-value="website_sale_order.website_id.disable_checkout"/>
+        </xpath>
+        <xpath expr="//a[@name='website_sale_main_button']" position="attributes">
+            <attribute name="t-attf-class">{{'d-none' if website_sale_order.website_id.disable_checkout else "#{_cta_classes} btn btn-primary #{not website_sale_order._is_cart_ready() and 'disabled'} #{_form_send_navigation and 'order-lg-3 w-100 w-lg-auto ms-lg-auto' or 'w-100'}"}}</attribute>
+        </xpath>
+    </template>
+
+    <template id="navigation_buttons_inherit_add_button" inherit_id="website_sale.navigation_buttons">
+        <xpath expr="//div[@name='o_website_sale_free_cart']" position="before">
+            <div t-if="website_sale_order._has_quote_checkout()" name="o_website_sale_free_cart" class="mb-3">
+                <form name="o_wsale_confirm_order"
+                        class="d-flex flex-column"
+                        target="_self"
+                        action="/shop/payment/validate"
+                        method="post">
+                    <input type="hidden"
+                            name="csrf_token"
+                            t-att-value="request.csrf_token()"
+                            t-nocache="The csrf token must always be up to date."/>
+                    <t t-if="not hide_payment_button" t-call="payment.submit_button">
+                        <t t-set="submit_button_label">Submit Quote</t>
+                    </t>
+                </form>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="cart_request_quote" inherit_id="website_sale.cart">
+        <xpath expr="//div[@class='col']" position="inside">
+            <div t-if="quote_success_message" class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fa fa-check-circle me-2"></i>
+                <t t-out="quote_success_message"/>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            
+            <div t-if="quote_error_message" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fa fa-exclamation-circle me-2"></i>
+                <t t-out="quote_error_message"/>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="navigation_buttons" inherit_id="website_sale.navigation_buttons">
+        <xpath expr="//a[@name='website_sale_main_button']" position="before">
+            <t t-if="xmlid == 'website_sale.cart'">
+                <t t-call="ow_website.request_quote_button"/>
+                <div t-if="not hide_payment_button" t-attf-class="position-relative #{_form_send_navigation and 'd-flex d-lg-none' or 'd-flex'} w-100 justify-content-center align-items-center my-2 opacity-75">
+                    <hr class="w-100"/>
+                    <span class="px-3">or</span>
+                    <hr class="w-100"/>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

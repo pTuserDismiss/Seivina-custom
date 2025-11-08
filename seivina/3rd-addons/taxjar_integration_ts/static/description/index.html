@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Odoo TaxJar Integration by TeqStars Technologies</title>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="https://fonts.googleapis.com" rel="preconnect">
+        <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <section class="py-3" style="background-color: #fff;">
+
+            <!-- Set background color-->
+            <div class="position-absolute d-none d-lg-block"
+                 style="background-color:#f5f5f5; width:100vw; height:100%; margin-left:calc((1080px - 100vw) / 2); margin-top:-30px">
+            </div>
+
+            <div class="container">
+                <div class="px-md-5 py-md-4 p-2 mb-4 bg-white shadow"
+                     style="border-radius: 20px; font-family: 'system-ui', sans-serif;">
+                    <div class="oe_container" style="margin-left:calc(-42vw + 50%); width:84vw">
+                        <div class="row o_equal_col_sm" style="max-width:1540px">
+                            <div class="" style="display:block; margin:0 auto; max-width:330px; width:80%"><span style="width:100%; display:inline-block"> <img class="img img-responsive mt24 mb8" src="./img/teqstars_odoo.svg" style="display:block; margin:0 auto"> </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="position-relative" style="border-radius: 10px;">
+                        <div class="p-lg-5 p-3 position-relative">
+                            <div class="row py-4 py-lg-0">
+                                <img class="img img-responsive mt24 mb8" src="taxjar_certified.jpg" style="display:block;margin:0 auto;MAX-WIDTH: -webkit-fill-available;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="position-relative mb-4" style="border-radius: 10px;">
+                        <img alt="" class="w-100 h-100 position-absolute img-fluid left_0" loading="lazy"
+                             src="img/bg-1.png" style="border-radius: 25px"/>
+                        <div class="p-lg-5 p-3 position-relative">
+                            <div class="row py-4 py-lg-0">
+                                <div class="col-md-12">
+                                    <h1 style="font-family: 'system-ui'; font-style: normal; font-weight: bold;word-wrap: break-word; font-size: 48px; line-height: 120%;text-align: center; text-transform: capitalize; font-size: calc(2.06rem + 1vw); ">
+                                        <span style="color: #333333; font-size: calc(2.06rem + 1vw);">Odoo TaxJar Integration</span>
+                                    </h1>
+                                </div>
+                                <div class="col-md-12 py-2">
+                                    <p style="font-family: system-ui; font-weight: 500; font-size: 18px; line-height: 150% !important;  text-align: center; letter-spacing: -0.02em; text-indent: 2px; color: #4F4F4F;">
+                                        Connect your Odoo account to TaxJar and start filing your sales tax returns in
+                                        minutes instead of hours. Compute sales tax automatically using TaxJar based on
+                                        customer and inventory addresses. Also allow to upload transaction from Odoo to
+                                        TaxJar.
+                                    </p>
+                                </div>
+
+                                <div class="col-md-12 py-2">
+                                    <h4 style="color:#10488A; font-family: 'system-ui'; font-weight:600; text-align:center; opacity:1; margin:15px 0 16px">
+                                        GET PERSONALIZED DEMO
+                                    </h4>
+                                </div>
+                                <div class="col-md-12 py-2 text-center ">
+                                    <a href="mailto:sales@teqstars.com?subject=Odoo TaxJar Integration - 18"
+                                       target="_blank"
+                                       style="   background-color:#091E42; border-radius:12px; display:inline-block; padding:7px 33px; border:1px solid #091E42"
+                                       class="mx-1 mb-2 deep-1 deep_hover">
+                                        <img class="img" style="width:30px" src="img/email.svg">
+                                        <span class="pl-2" style="color:#fff; font-size:16px; vertical-align:middle">Email Us</span>
+                                    </a>
+                                    <a href="skype:live:.cid.3745956e2833ccec?chat" target="_blank"
+                                       style="background-color:#091E42; border-radius:12px; display:inline-block; padding:7px 33px; border:1px solid #091E42"
+                                       class="mx-1 mb-2 deep-1 deep_hover">
+                                        <img class="img" style="width:27px" src="img/skype.svg">
+                                        <span class="pl-2" style="color:#fff; font-size:16px; vertical-align:middle">Skype Us</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4 bg-white shadow" style="border-radius: 20px; font-family: 'system-ui'; font-weight: 400;">
+                    <div class="pt-4">
+                        <ul class="nav nav-tabs justify-content-center bg-white pt-md-2" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a aria-controls="overview" aria-selected="true" class="nav-link active" data-bs-toggle="tab"
+                                   href="#features" id="features-tab" role="tab" style="color: #10488A; font-weight: 500; text-transform:uppercase; font-family: 'system-ui';">
+                                    <i class="fa fa-check-square-o"></i>
+                                    Features
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a aria-controls="s_c" aria-selected="false" class="nav-link" data-bs-toggle="tab" href="#screenshot"
+                                   id="screenshot-tab" role="tab" style="color: #10488A; font-weight: 500; text-transform: uppercase; font-family: 'system-ui';">
+                                    <i class="fa fa-picture-o"></i>
+                                    Screenshots
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a aria-controls="overview" aria-selected="false" class="nav-link" data-bs-toggle="tab"
+                                   href="#documentation" id="documentation-tab" role="tab" style="color: #10488A; font-weight: 500; text-transform:uppercase; font-family: 'system-ui';">
+                                    <i class="fa fa-book"></i>
+                                    User Guide
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a aria-controls="faq" aria-selected="false" class="nav-link" data-bs-toggle="tab" href="#faq"
+                                   id="faq-tab" role="tab" style="color: #10488A; font-weight: 500; text-transform: uppercase; font-family: 'system-ui';">
+                                    <i class="fa fa-question-circle"></i>
+                                    FAQ's
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content p-md-5 p-2 py-3">
+                        <div aria-labelledby="features-tab" class="tab-pane fade show active" id="features" role="tabpanel">
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <div class="card shadow" style="background-color: #FFFAFA !important;border-color: #dfdfdf;border-radius: 10px;">
+                                    <div class="card-body" style="background-color: transparent !important;">
+                                        <div style="display: inline;justify-content:space-between;margin-bottom: -24px;">
+                                            <span style="color:#2A60FC;text-transform: capitalize;">TaxJar to Odoo</span>
+                                            <img style="width: 50px;float: right;margin-right: 25px;" src="img/cloud-import.svg"/>
+                                        </div>
+                                        <h4 style="text-transform: capitalize; font-weight: 500 !important;" class="card-title">
+                                            Import Operations
+                                        </h4>
+                                        <ul class="card-text" style="padding-left: 20px;">
+                                            <li>Import <b>Product Categories</b> from TaxJar.</li>
+                                            <li>Import <b>TaxJar Addresses(States)</b> from TaxJar.</li>
+                                            <li>Import <b>Taxes Rate</b> with body from TaxJar.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <div class="card shadow" style="background-color: #FFFAFA !important;border-radius: 10px; border-color: #dfdfdf;">
+                                    <div class="card-body"
+                                         style="background-color: transparent !important;">
+                                        <div style="display: inline;justify-content:space-between;margin-bottom: -24px;">
+                                            <span style="color:#2A60FC;text-transform: capitalize;">Odoo to TaxJar</span>
+                                            <img style="width: 50px;float: right; margin-right: 25px;"
+                                                 src="img/cloud-export.svg"/>
+                                        </div>
+                                        <h4 style="text-transform: capitalize; font-weight: 500 !important;" class="card-title">
+                                            Export Operations
+                                        </h4>
+                                        <ul class="card-text" style="padding-left: 20px;">
+                                            <li>Create <b>Transaction</b> from Odoo.</li>
+                                            <li>Create <b>Refund Transaction</b> from Odoo.</li>
+                                            <li>Delete <b>Transaction</b> from Odoo.</li>
+                                            <li>Delete <b>Refund Transaction</b> from Odoo.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <div class="card shadow" style="background-color: #F5FFFA !important;border-radius: 10px;">
+                                    <div class="card-body"
+                                         style="background-color: transparent !important;">
+                                        <h5 style="text-transform: capitalize; font-family: 'system-ui';" class="card-title">
+                                            Automated Tax Application with TaxJar in Odoo
+                                        </h5>
+                                        <p>
+                                            Automate tax application on Sale and website orders in Odoo based on customer and warehouse locations through TaxJar integration.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <div class="card shadow" style="background-color: #F5FFFA !important;border-radius: 10px;">
+                                    <div class="card-body"
+                                         style="background-color: transparent !important;">
+                                        <h5 style="text-transform: capitalize; font-family: 'system-ui';" class="card-title">
+                                            Customer Exempt Type
+                                        </h5>
+                                        <p>
+                                            Calculate taxes in accordance with customer exempt type.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <div class="card shadow" style="background-color: #F5FFFA !important;border-radius: 10px;">
+                                    <div class="card-body"
+                                         style="background-color: transparent !important;">
+                                        <h5 style="text-transform: capitalize; font-family: 'system-ui';" class="card-title">
+                                            Breakdown Tax Application in Orders
+                                        </h5>
+                                        <p>
+                                            User can apply Breakdown Taxes (City, State and country etc.) in order.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div aria-labelledby="screenshot-tab" class="tab-pane fade show py-1" id="screenshot" role="tabpanel">
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    How to get API key from TaxJar?
+                                </h4>
+                                <img src="img/screenshots/1_1TaxJarweb.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Setup TaxJar Account.
+                                </h4>
+                                <img src="img/screenshots/1_taxJar_account_configuration.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Confirm TaxJar Account.
+                                </h4>
+                                <img src="img/screenshots/1_taxJar_account_state.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Sync Categories.
+                                </h4>
+                                <img src="img/screenshots/2_taxJar_sync_category.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Configure Fiscal Position.
+                                </h4>
+                                <img src="img/screenshots/5_fiscal_position_united_states.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Mapping Odoo Category with TaxJar Category.
+                                </h4>
+                                <img src="img/screenshots/4_product_category.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Mapping Odoo Product Category with TaxJar Category.
+                                </h4>
+                                <img src="img/screenshots/3_product_temp_categ.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Configure Warehouse Partner(Address).
+                                </h4>
+                                <img src="img/screenshots/warehouse_address.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Configure Customer Address.
+                                </h4>
+                                <img src="img/screenshots/customer_add.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Configure Customer Exempt Type.
+                                </h4>
+                                <img src="img/screenshots/exemption_type.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Sales Tax Calculator.
+                                </h4>
+                                <img src="img/screenshots/tax_calculator_taxjar.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Automatically Sales Tax Calculated from TaxJar based on Customer Address.
+                                </h4>
+                                <video controls="" loop="true" autoplay="" muted="" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px">
+                                    <source src="img/screenshots/automated_calc_taxes.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Validate Invoice(Exported Invoice from Odoo to TaxJar).
+                                </h4>
+                                <img src="img/screenshots/invoice_validate.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    How we can see export invoice in the TaxJar.
+                                </h4>
+                                <img src="img/screenshots/Invoice_transaction_taxjar.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Validate Refund Invoice(Exported Invoice from Odoo to TaxJar).
+                                </h4>
+                                <img src="img/screenshots/refund_invoice.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Validate Refund Invoice(Exported Invoice from Odoo to TaxJar).
+                                </h4>
+                                <img src="img/screenshots/refund_invoice_transaction_taxjar.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Cancel Invoice(Removed Invoice from Odoo to TaxJar).
+                                </h4>
+                                <img src="img/screenshots/invoice_cancel.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                            <div class="position-relative mb-4" style="border-radius: 10px;">
+                                <h4 style="color:#333333; font-family: 'system-ui'; font-weight:400; text-align:center; opacity:1; margin:15px 0 16px">
+                                    Cancel Refund Invoice(Removed Refund Invoice from Odoo to TaxJar).
+                                </h4>
+                                <img src="img/screenshots/cancel_refund_invoice.png" class="img img-fluid shadow-lg mx-auto mt-4 mb-5" loading="lazy"
+                                     style="border:1px solid #f2eef7; border-radius:11px"/>
+                            </div>
+                        </div>
+                        <div aria-labelledby="documentation-tab" class="tab-pane fade show" id="documentation" role="tabpanel">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="card shadow" style="background-color: #f6f7f9 !important;border-color: #dfdfdf;border-radius: 10px;">
+                                        <div class="card-body" style="background-color: transparent !important;">
+                                            <div style="display:block; margin:0 auto; text-align:center">
+                                                <div style="vertical-align:middle" class="d-inline-block mx-3 my-3">
+                                                    <span class="fa fa-book fa-2x mb-3" style="width:30px;color: #10488A;"></span>
+                                                    <h4 style="color:#000000; font-family: 'system-ui'; font-weight:500; text-align:center; margin:15px 0 16px">
+                                                        Read User Guide
+                                                    </h4>
+                                                    <div>
+                                                        <div class="text-center">
+                                                            <a target="_blank"
+                                                               style="display:inline-block;padding:13px 30px;border:1px solid #091E42;border-radius:10px;background-color: #091E42;">
+                                                                <span class="fa fa-clipboard mr-2" style="color: #ffffff;font-size:20px;vertical-align:middle;"></span>
+                                                                <span style="color: #ffffff;font-size:16px;vertical-align:middle;">https://bit.ly/378PTCx</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="card shadow" style="background-color: #f6f7f9 !important;border-color: #dfdfdf;border-radius: 10px;">
+                                        <div class="card-body" style="background-color: transparent !important;">
+                                            <div style="display:block; margin:0 auto; text-align:center">
+                                                <div style="vertical-align:middle" class="d-inline-block mx-3 my-3">
+                                                    <span class="fa fa-youtube-play fa-2x mb-3" style="width:30px;color: #10488A;"></span>
+                                                    <h4 style="color:#000000; font-family: 'system-ui'; font-weight:500; text-align:center; margin:15px 0 16px">
+                                                        See How It Works
+                                                    </h4>
+                                                    <div>
+                                                        <div class="text-center">
+                                                            <a target="_blank" href="https://www.youtube.com/watch?v=liRQYmzksT0"
+                                                               style="display:inline-block;padding:13px 30px;border:1px solid #091E42;border-radius:10px;background-color: #091E42;">
+                                                                <span class="fa fa-play mr-2" style="color: #ffffff;font-size:20px;vertical-align:middle;"></span>
+                                                                <span style="color: #ffffff;font-size:16px;vertical-align:middle;">Click to Watch Tutorial</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div aria-labelledby="faq-tab" class="tab-pane fade show" id="faq" role="tabpanel">
+                            <div class="accordion" id="accordion6">
+                                <div id="accordion">
+                                    <div class="card mb-2">
+                                        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#faq-1" aria-expanded="true" aria-controls="faq-1" id="heading1"
+                                             style="background-color: #e3e3e3">
+                                            <h5 class="mb-0">
+                                                <a class="card-text text-decoration-none"
+                                                   style="font-family: 'system-ui'; color: #212529; font-size:21px; line-height:30px; font-weight:500;">
+                                                    Does this application compatible with both Odoo Enterprise and Community editions?
+                                                    <img style="width: 30px; float: right; margin-right: 15px;" src="img/down-arrow.svg">
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="faq-1" class="collapse show" aria-labelledby="heading1" data-parent="#accordion">
+                                            <div class="card-body" style="background-color: #f6f7f9 !important;">
+                                                Yes, the application is fully compatible with Odoo Enterprise (On-premise and Odoo.SH) as well as Community. Please note that Odoo
+                                                Online (Cloud) does not support the installation of third-party apps, so this app cannot be installed on Odoo Online.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-2">
+                                        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#faq-2" aria-expanded="true" aria-controls="faq-2" id="heading2"
+                                             style="background-color: #e3e3e3">
+                                            <h5 class="mb-0">
+                                                <a class="card-text text-decoration-none"
+                                                   style="font-family: 'system-ui'; color: #212529; font-size:21px; line-height:30px; font-weight:500;">
+                                                    Will I receive complimentary support and upgrades upon buying the application?
+                                                    <img style="width: 30px; float: right; margin-right: 15px;" src="img/down-arrow.svg">
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="faq-2" class="collapse" aria-labelledby="heading2" data-parent="#accordion">
+                                            <div class="card-body" style="background-color: #f6f7f9 !important;">
+                                                We offer free support for the initial 60 days after the purchase date. Beginning from version 13, each app version will be sold
+                                                separately.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-2">
+                                        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#faq-3" aria-expanded="true" aria-controls="faq-3" id="heading3"
+                                             style="background-color: #e3e3e3">
+                                            <h5 class="mb-0">
+                                                <a class="card-text text-decoration-none"
+                                                   style="font-family: 'system-ui'; color: #212529; font-size:21px; line-height:30px; font-weight:500;">
+                                                    How do I request an additional feature for this app?
+                                                    <img style="width: 30px; float: right; margin-right: 15px;" src="img/down-arrow.svg">
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <div id="faq-3" class="collapse" aria-labelledby="heading3" data-parent="#accordion">
+                                            <div class="card-body" style="background-color: #f6f7f9 !important;">
+                                                For requesting a additional feature in the app, please feel free to contact us at via
+                                                <a href="mailto:info@teqstars.com" style="color: #2A60FC">email</a>
+                                                or
+                                                <a href="skype:live:.cid.3745956e2833ccec?chat" style="color: #2A60FC">Skype.</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2 style="font-family: 'system-ui'; font-style: normal; font-weight: bold;word-wrap: break-word; font-size: 48px; line-height: 120%;text-align: center; text-transform: capitalize; font-size: calc(2.06rem + 1vw); "
+                    class="text-center mt-4 mb-4">
+                    <span style="color: #333333; font-size: calc(2.06rem + 1vw);">Suggested Apps</span>
+                </h2>
+                <div id="demo" class="row carousel slide mb32" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" style="min-height: 0px;">
+                            <div class="col-xs-12 col-sm-4 col-md-4 p-2" style="float: left;">
+                                <a href="https://apps.odoo.com/apps/modules/18.0/mailchimp/" target="_blank">
+                                    <div style="box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);border-radius: 10px;">
+                                        <img class="oe_picture img-rounded"
+                                             style="border-radius:10px;"
+                                             src="img/slideshow/mailchimp_odoo.jpg">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 p-2" style="float: left;">
+                                <a href="https://apps.odoo.com/apps/modules/17.0/shopify/" target="_blank">
+                                    <div style="box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);border-radius: 10px;">
+                                        <img class="oe_picture img-rounded"
+                                             style="border-radius:10px;"
+                                             src="img/slideshow/shopify_odoo.jpg">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 p-2" style="float: left;">
+                                <a href="https://apps.odoo.com/apps/modules/18.0/woocommerce" target="_blank">
+                                    <div style="box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);border-radius: 10px;">
+                                        <img class="oe_picture img-rounded"
+                                             style="border-radius:10px;"
+                                             src="img/slideshow/woo_banner.jpg">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="carousel-item" style="min-height: 0px;">
+                            <div class="col-xs-12 col-sm-4 col-md-4 p-2" style="float: left;">
+                                <a href="https://www.odoo.com/apps/modules/17.0/fedex_delivery/" target="_blank">
+                                    <div style="box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);border-radius: 10px;">
+                                        <img class="oe_picture img-rounded" style="border-radius:10px;" src="img/slideshow/fedex_odoo.png">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 p-2" style="float: left;">
+                                <a href="https://www.odoo.com/apps/modules/17.0/easypost_delivery/" target="_blank">
+                                    <div style="box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);border-radius: 10px;">
+                                        <img class="oe_picture img-rounded" style="border-radius:10px;" src="img/slideshow/easypost_odoo.png">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4 p-2" style="float: left;">
+                                <a href="https://apps.odoo.com/apps/modules/17.0/ups_delivery/" target="_blank">
+                                    <div style="box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);border-radius: 10px;">
+                                        <img class="oe_picture img-rounded" style="border-radius:10px;" src="img/slideshow/ups_odoo.jpg">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#demo" data-bs-slide="prev"
+                       style="left:-25px;width: 0px;color: #000;">
+                        <span class="carousel-control-prev-icon">
+                            <i class="fa fa-chevron-left"
+                               style="font-size:24px"></i>
+                        </span>
+                    </a>
+                    <a class="carousel-control-next" href="#demo" data-bs-slide="next"
+                       style="right:-25px;width: 0px;color: #000;">
+                        <span class="carousel-control-next-icon">
+                            <i class="fa fa-chevron-right"
+                               style="font-size:24px"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <script src="js/jquery.slim.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_stock_picking_form_inherit_ow" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.ow</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <button name="do_print_picking" position="after">
+                <button string="Print Labels" type="object" name="action_open_label_type"/>
+            </button>
+            <field name="product_id" position="after">
+                <field name="inspection_label" invisible="not show_inspection_label" decoration-muted="inspection_label == 'white'" decoration-info="inspection_label == 'blue'" decoration-danger="inspection_label == 'yellow'"/>
+            </field>
+        </field>
+    </record>
+</odoo>

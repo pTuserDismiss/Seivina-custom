@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shipping_confirmation_wizard_form" model="ir.ui.view">
+        <field name="name">shipping.confirmation.wizard.form</field>
+        <field name="model">shipping.confirmation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Shipping Confirmation">
+                <div class="p-2">
+                    <p>Do you want Odoo to auto (re)-calculate shipping cost?</p>
+                </div>
+                <footer>
+                    <button name="action_calculate_shipping_and_confirm" 
+                            type="object" 
+                            string="Yes, Calculate" 
+                            class="btn-primary"/>
+                    <button name="action_confirm_only" 
+                            type="object" 
+                            string="No, Confirm Only" 
+                            class="btn-primary"/>
+                    <button string="Cancel" 
+                            class="btn-secondary" 
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

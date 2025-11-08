@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="vpicktree_ow_rma" model="ir.ui.view">
+        <field name="name">stock.picking.list.ow.rma</field>
+        <field name="model">stock.picking</field>
+        <field name="arch" type="xml">
+            <list string="Picking list" multi_edit="1" sample="1" js_class="stock_list_view">
+                <header>
+                    <button name="do_unreserve" type="object" string="Unreserve"/>
+                    <button name="action_assign" type="object" string="Check Availability"/>
+                </header>
+                <field name="company_id" column_invisible="True"/>
+                <field name="priority" optional="show" widget="priority" nolabel="1"/>
+                <field name="name" decoration-bf="1"/>
+                <field name="location_id" options="{'no_create': True}" string="From" groups="stock.group_stock_multi_locations" optional="show" readonly="state == 'done'"/>
+                <field name="location_dest_id" options="{'no_create': True}" string="To" groups="stock.group_stock_multi_locations" optional="show" readonly="state == 'done'"/>
+                <field name="partner_id" optional="show" readonly="state in ['cancel', 'done']"/>
+                <field name="is_signed" string="Signed" optional="hide" groups="stock.group_stock_sign_delivery"/>
+                <field name="user_id" optional="hide" widget="many2one_avatar_user" readonly="state in ['cancel', 'done']"/>
+                <field name="scheduled_date" optional="show" widget="remaining_days" invisible="state in ('done', 'cancel')" readonly="state in ['cancel', 'done']"/>
+                <field name="picking_type_code" column_invisible="True"/>
+                <field name="products_availability_state" column_invisible="True" options='{"lazy": true}'/>
+                <field name="products_availability" options='{"lazy": true}'
+                    optional="hide"
+                    invisible="picking_type_code != 'outgoing' or state not in ['confirmed', 'waiting', 'assigned']"
+                    decoration-success="state == 'assigned' or products_availability_state == 'available'"
+                    decoration-warning="state != 'assigned' and products_availability_state in ('expected', 'available')"
+                    decoration-danger="state != 'assigned' and products_availability_state == 'late'"/>
+                <field name="date_deadline" optional="hide" widget="remaining_days" invisible="state in ('done', 'cancel')"/>
+                <field name="date_done" string="Effective Date" optional="hide"/>
+                <field name="origin" optional="show" readonly="state in ['cancel', 'done']"/>
+                <field name="production_return_id"/>
+                <field name="purchase_id"/>
+                <field name="backorder_id" optional="hide"/>
+                <field name="picking_type_id" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                <field name="state" optional="show" widget="badge"
+                       decoration-danger="state=='cancel'"
+                       decoration-info="state== 'assigned'"
+                       decoration-muted="state == 'draft'"
+                       decoration-success="state == 'done'"
+                       decoration-warning="state not in ('draft','cancel','done','assigned')"/>
+                <field name="activity_exception_decoration" widget="activity_exception"/>
+                <field name="json_popover" widget="stock_rescheduling_popover" nolabel="1" invisible="not json_popover"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_form_ow_rma" model="ir.ui.view">
+        <field name="name">stock.picking.form.ow.rma</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <field name="show_return_actions" invisible="1"/>
+                <button name="action_rma_refund" type="object" string="Refund" invisible="not show_return_actions or state != 'done'"/>
+                <button name="action_rma_replacement" type="object" string="Replacement" invisible="not show_return_actions or state != 'done'"/>
+                <button name="action_rma_repair" type="object" string="Repair" invisible="not show_return_actions or state != 'done'"/>
+                <button name="action_rma_customer_return" type="object" string="Return to Customer" invisible="not show_return_actions or state != 'done'"/>
+                <button name="action_rma_scrap" type="object" string="Scrap" invisible="not show_return_actions or state != 'done'"/>
+                <button name="action_report_mismatch" type="object" string="Report Mismatch" invisible="not show_return_actions"/>
+            </header>
+
+            <button name="action_see_returns" position="before">
+                <button name="action_view_rma_refund" type="object" class="oe_stat_button" icon="fa-exchange" invisible="move_refund_count == 0">
+                    <field name="move_refund_count" widget="statinfo" string="Refunds"/>
+                </button>
+                <button name="action_view_rma_replacement" type="object" class="oe_stat_button" icon="fa-pencil-square-o" invisible="sale_replacement_count == 0">
+                    <field name="sale_replacement_count" widget="statinfo" string="Replacements"/>
+                </button>
+            </button>
+
+            <xpath expr="//field[@name='move_ids_without_package']/list/field[@name='product_uom_qty']" position="after">
+                <field name="expected_lot_ids" widget="many2many_tags" column_invisible="not parent.show_return_actions"
+                       readonly="has_tracking == 'none' or parent.is_locked and parent.state in ('cancel', 'done')"
+                       options="{'no_create_edit': True, 'no_quick_create': True}"/>
+            </xpath>
+
+            <field name="group_id" position="after">
+                <field name="production_return_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_picking_internal_search_ow_rma" model="ir.ui.view">
+        <field name="name">stock.picking.search.ow.rma</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <filter name="reception" position="attributes">
+                <attribute name="domain">[('picking_type_code', '=', 'incoming'), ('picking_type_return', '=', False)]</attribute>
+            </filter>
+            <filter name="reception" position="after">
+                <filter name="vendor_rma" string="Return to Vendor" domain="[('picking_type_code', '=', 'outgoing'), ('picking_type_return', '=', True)]"/>
+            </filter>
+            <filter name="delivery" position="attributes">
+                <attribute name="domain">[('picking_type_code', '=', 'outgoing'), ('picking_type_return', '=', False)]</attribute>
+            </filter>
+            <filter name="delivery" position="after">
+                <filter name="rma" string="RMA" domain="[('picking_type_code', '=', 'incoming'), ('picking_type_return', '=', True)]"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="action_picking_tree_rma" model="ir.actions.act_window">
+        <field name="name">RMA</field>
+        <field name="res_model">stock.picking</field>
+        <field name="path">rma</field>
+        <field name="view_mode">list,kanban,form,calendar,activity</field>
+        <field name="context">{
+            'contact_display': 'partner_address',
+            'restricted_picking_type_code': 'incoming',
+            'search_default_rma': 1
+            }</field>
+        <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+    </record>
+
+    <record id="method_action_picking_tree_rma" model="ir.actions.server">
+        <field name="name">ow_rma.method_action_picking_tree_rma</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">action = model.get_action_picking_tree_rma()</field>
+    </record>
+
+    <record id="action_picking_tree_vendor_rma" model="ir.actions.act_window">
+        <field name="name">Return to Vendor</field>
+        <field name="res_model">stock.picking</field>
+        <field name="path">vendor_rma</field>
+        <field name="view_mode">list,kanban,form,calendar,activity</field>
+        <field name="context">{
+            'contact_display': 'partner_address',
+            'restricted_picking_type_code': 'outgoing',
+            'search_default_vendor_rma': 1
+        }</field>
+        <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        <field name="view_id" ref="ow_rma.vpicktree_ow_rma"/>
+    </record>
+
+    <record id="method_action_picking_tree_vendor_rma" model="ir.actions.server">
+        <field name="name">ow_rma.method_action_picking_tree_vendor_rma</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">action = model.get_action_picking_tree_vendor_rma()</field>
+    </record>
+</odoo>

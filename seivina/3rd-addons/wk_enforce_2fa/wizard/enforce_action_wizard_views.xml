@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+    <data>
+        <record id="enforce_twofa_wizard_form" model="ir.ui.view">
+            <field name="name">enforce.twofa.wizard.form</field>
+            <field name="model">enforce.twofa.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Enforce 2FA To Users">
+                    <div class="font-weight-bold">
+                        Are you sure you want to Enable Enforce 2FA to seletced users.
+                    </div>
+                    <footer>
+                        <button string="Confirm"
+                            data-hotkey="q"
+                            name="enforce_twofa_action"
+                            type="object"
+                            class="btn btn-primary" />
+                        <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"
+                            data-hotkey="z" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="enforce_twofa_wizard_action" model="ir.actions.server">
+            <field name="name">Enforce 2FA to Users</field>
+            <field name="state">code</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="base.model_res_users" />
+            <field name="binding_model_id" ref="base.model_res_users" />
+            <field name="binding_view_types">list</field>
+            <field name="code">
+                if records:
+                    action = records.action_setup_enforce_2fa()
+            </field>
+        </record>
+    </data>
+</odoo>

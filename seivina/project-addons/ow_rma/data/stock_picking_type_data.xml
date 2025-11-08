@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <!--    Customer Return-->
+    <record id="picking_type_rma" model="stock.picking.type">
+        <field name="name">RMA</field>
+        <field name="code">incoming</field>
+        <field name="sequence_id" ref="ow_rma.seq_picking_rma"/>
+        <field name="sequence_code">RMA</field>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="default_location_src_id" ref="stock.stock_location_customers"/>
+        <field name="default_location_dest_id" ref="ow_rma.stock_location_rma"/>
+        <field name="is_return" eval="True"/>
+        <field name="show_return_actions" eval="True"/>
+        <field name="return_picking_type_id" ref="stock.picking_type_out"/>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <!--    Vendor Return-->
+    <record id="picking_type_vendor_rma" model="stock.picking.type">
+        <field name="name">Return to Vendor</field>
+        <field name="code">outgoing</field>
+        <field name="sequence_id" ref="ow_rma.seq_picking_vendor_rma"/>
+        <field name="sequence_code">RTV</field>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="default_location_src_id" ref="stock.stock_location_stock"/>
+        <field name="default_location_dest_id" ref="stock.stock_location_suppliers"/>
+        <field name="use_create_lots" eval="False"/>
+        <field name="use_existing_lots" eval="True"/>
+        <field name="is_return" eval="True"/>
+        <field name="return_picking_type_id" ref="stock.picking_type_in"/>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <function model="stock.picking.type" name="_try_loading_rma">
+        <value eval="[]"/>
+    </function>
+
+</odoo>
