@@ -19,9 +19,9 @@
         # ============================== SECURITY =============================
 
         # ============================== VIEWS ================================
-        # 'views/res_config_settings_views.xml',
+        'views/res_config_settings_views.xml',
         'views/purchase_order_views.xml',
-        # 'wizard/mail_compose_message_views.xml',
+        'wizard/mail_compose_message_views.xml',
 
         # ============================== REPORT ===============================
 
