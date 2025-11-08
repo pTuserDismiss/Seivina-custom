@@ -6,9 +6,8 @@
     'summary': 'Seivina: Purchase',
     'version': '18.0.1.0',
     'category': 'Purchase',
-    'website': 'https://novobi.com',
-    'author': 'Novobi, LLC',
-    'license': 'OPL-1',
+    'author': 'Seivina, LLC',
+    'license': '',
     'depends': [
         # Odoo addons
         'purchase',
