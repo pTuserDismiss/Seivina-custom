@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="extra_info" inherit_id="website_sale.extra_info">
+        <xpath expr="//div[@class='s_website_form_field col-12 py-2 mb-0']" position="after">
+            <!-- Sales Representative selector -->
+            <div class="s_website_form_field col-12 py-2 mb-0" data-type="many2one" data-name="user_id">
+                <t t-set="sales_group_id" t-value="request.env.ref('sales_team.group_sale_salesman').id if request.env.ref('sales_team.group_sale_salesman', raise_if_not_found=False) else False"/>
+                <t t-set="sales_reps"
+                    t-value="request.env['res.users'].sudo().search([('active', '=', True)] + ([('groups_id', 'in', sales_group_id)] if sales_group_id else []), order='name')"/>
+                <div class="s_col_no_resize s_col_no_bgcolor row">
+                    <label class="s_website_form_label col-form-label col-sm-auto" style="width: 200px" for="user_id">
+                        <span class="s_website_form_label_content">Sales Representative</span>
+                    </label>
+                    <div class="col-sm">
+                        <select id="user_id" class="s_website_form_input form-control" name="user_id">
+                            <option value="">Select a sales rep</option>
+                            <t t-foreach="sales_reps" t-as="rep">
+                                <option t-att-value="rep.id"
+                                        t-att-selected="website_sale_order.user_id.id == rep.id and 'selected' or None">
+                                    <t t-esc="rep.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Currency selector (through pricelist) -->
+            <div class="s_website_form_field col-12 py-2 mb-0" data-type="many2one" data-name="pricelist_id">
+                <t t-set="available_pricelists" t-value="website.get_pricelist_available(show_visible=True)"/>
+                <div class="s_col_no_resize s_col_no_bgcolor row">
+                    <label class="s_website_form_label col-form-label col-sm-auto" style="width: 200px" for="pricelist_id">
+                        <span class="s_website_form_label_content">Currency</span>
+                    </label>
+                    <div class="col-sm">
+                        <select id="pricelist_id" class="s_website_form_input form-control" name="pricelist_id">
+                            <t t-foreach="available_pricelists" t-as="pl">
+                                <option t-att-value="pl.id"
+                                        t-att-selected="website_sale_order.pricelist_id.id == pl.id and 'selected' or None">
+                                    <t t-esc="pl.currency_id.name"/> - <t t-esc="pl.name"/>
+                                </option>
+                            </t>
+                        </select>
+                        <small class="form-text text-muted">Prices will follow the selected pricelist's currency.</small>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
