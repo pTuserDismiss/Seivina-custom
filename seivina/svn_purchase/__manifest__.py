@@ -2,8 +2,8 @@
 # See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'Oakworks: Purchase',
-    'summary': 'Oakworks: Purchase',
+    'name': 'Seivina: Purchase',
+    'summary': 'Seivina: Purchase',
     'version': '18.0.1.0',
     'category': 'Purchase',
     'website': 'https://novobi.com',
@@ -20,9 +20,9 @@
         # ============================== SECURITY =============================
 
         # ============================== VIEWS ================================
-        'views/res_config_settings_views.xml',
+        # 'views/res_config_settings_views.xml',
         'views/purchase_order_views.xml',
-        'wizard/mail_compose_message_views.xml',
+        # 'wizard/mail_compose_message_views.xml',
 
         # ============================== REPORT ===============================
 
