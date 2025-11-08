@@ -1,0 +1,22 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sn_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-08 10:00+0000\n"
+"PO-Revision-Date: 2025-11-08 10:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sn_purchase
+#: code:addons/sn_purchase/models/purchase_order.py:0
+#, python-format
+msgid "You cannot modify this Purchase Order after approval in alternative flow."
+msgstr "Bạn không thể chỉnh sửa Đơn mua hàng này sau khi đã được phê duyệt trong quy trình thay thế."
